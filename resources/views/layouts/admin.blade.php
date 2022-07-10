@@ -1,17 +1,14 @@
 
 @include('admins.includes.header')
 
-@include('admins.includes.ajax')
+@include('admins.includes.navbar')
 
-@include('admins.includes._navbar')
+@include('admins.includes.aside')
 
+<div class="content-wrapper">
+    @yield('content')
+</div>
 
-@include('admins.includes._aside')
+{{-- @include('admins.partials._session') --}}
 
-@yield('content')
-
-@include('admins.partials._session')
-
-@stack('char')
-
-@include('admins.includes._footer')
+@include('admins.includes.footer')
