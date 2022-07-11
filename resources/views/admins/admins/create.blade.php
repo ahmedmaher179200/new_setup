@@ -1,95 +1,106 @@
 @extends('layouts.admin')
 
-@section('title', "admins-add")
+@section('title', "Add Admin")
 
 
 @section('content')
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/bs-stepper/css/bs-stepper.min.css')}}">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/dropzone/min/dropzone.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/dist/css/adminlte.min.css')}}">
 
-    <div class="content-wrapper">
-
-        <section class="content-header">
-
-            <h1>{{ trans('admin.add') }}</h1>
-
-            <ol class="breadcrumb">
-                <li> <a href="#"><i class="fa fa-dashboard"></i>{{ trans('admin.dashboard') }}</a></li>
-                <li> <a href="#"><i class="fa fa-users"></i>{{ trans('admin.admin') }}</a></li>
-                <li class="active"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</li>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">{{ trans('admin.Dashboard') }}</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/admins')}}">{{ trans('admin.Admins') }}</a> / {{ trans('admin.Create') }}</li>
             </ol>
-        </section>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-        <section class="content">
-
-            <div class="box box-primary">
-
-                <div class="box-header with-border">
-                    <h1 class="box-title">{{ trans('admin.add') }}</h1>
-                </div> {{-- end of box header --}}
-
-                <div class="box-body">
-
-                    {{-- @include('admins.partials._errors') --}}
-                    <form action="" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row" style="margin: 0 !important;">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>{{ trans('admin.username') }}</label>
-                                <input type="username" class="form-control  @error('username') is-invalid @enderror" name="username"
-                                    placeholder="{{ trans('admin.username') }}" value="{{ old('username') }}" required autocomplete="off">
-                                @error('username')
-                                    <small class=" text text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>{{ trans('admin.password') }}</label>
-                                <input type="password" placeholder="{{ trans('admin.password') }}" class="form-control  @error('password') is-invalid @enderror" name="password" required value="">
-                                @error('password')
-                                    <small class=" text text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ trans('admin.role') }}</label>
-                                <select name="role_id" class="form-control">
-                                    @foreach ($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->name}}</option>
-                                    @endforeach
-                                </select>
-                                @error('role_id')
-                                    <small class=" text text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin: 0 !important;">
-                            <div class="col-md-12">
+    <section class="content">
+        <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                <h3 class="card-title">{{ trans('admin.Create') }}</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form method="post" action="">
+                    @csrf
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>
-                                        {{ trans('admin.add') }}</button>
+                                    <label for="exampleInputEmail1">{{ trans('admin.Username') }}</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Username') }}" name="username">
+                                    @error('username')
+                                        <span style="color: red; margin: 20px;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">{{ trans('admin.Password') }}</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="{{ trans('admin.Password') }}" name="password">
+                                    @error('password')
+                                        <span style="color: red; margin: 20px;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ trans('admin.Roles') }}</label>
+                                    <select class="form-control select2" style="width: 100%;" name="role_id">
+                                        @foreach ($roles as $role)
+                                            <option value="{{$role->id}}">{{$role->name}}</option>
+                                        @endforeach>
+                                    </select>
+                                    @error('role_id')
+                                        <span style="color: red; margin: 20px;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- /.card-body -->
 
-                    </form> {{-- end of form --}}
-
-                </div> {{-- end of box body --}}
-
-            </div> {{-- end of box --}}
-
-        </section><!-- end of content -->
-
-    </div><!-- end of content wrapper -->
-
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">{{ trans('admin.Add') }}</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 @endsection

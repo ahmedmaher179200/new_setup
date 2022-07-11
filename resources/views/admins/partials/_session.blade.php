@@ -1,23 +1,34 @@
+<!-- SweetAlert2 -->
+<script src="{{ asset('public/admin/dashboard/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<!-- Toastr -->
+<script src="{{ asset('public/admin/dashboard/plugins/toastr/toastr.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('public/admin/dashboard/dist/js/adminlte.min.js')}}"></script>
 @if (session('success'))
+    <script>
+        $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
 
-<script>
-    new Noty({
-            type: 'success',
-            layout: 'topRight',
-            text: "{{ session('success') }}",
-            timeout: 2000,
-            killer: true
-        }).show();
-</script>
+        toastr.success("{{ session('success') }}");
+        });
+    </script>
 
 @elseif( session('error') )
-<script>
-    new Noty({
-        type: 'error',
-        layout: 'topRight',
-        text: "{{ session('error') }}",
-        timeout: 2000,
-        killer: true
-    }).show();
-</script>
+    <script>
+        $(function() {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000
+        });
+
+        toastr.error("{{ session('error') }}")
+        });
+    </script>
 @endif

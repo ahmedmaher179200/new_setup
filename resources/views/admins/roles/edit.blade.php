@@ -53,24 +53,16 @@
                                 @enderror
                             </div>
                         </div>
-                        
-                        @php
-                        $models = [
-                            'admins',
-                        ];
 
-                        $maps = ['read', 'create', 'update', 'delete'];
-                        @endphp
-
-                        @foreach ($models as $model)
+                        @foreach (config('global.roles') as $role)
                             <div class="list-group col-md-3" style="padding-left: 15px !important;">
                                 <a href="#" class="list-group-item active">
-                                    {{$model}}
+                                    {{$role}}
                                 </a>
                                 {{-- --}}
-                                @foreach ($maps as $map)
+                                @foreach (config('global.maps') as $map)
                                     <label>
-                                        <input type="checkbox" name="permissions[]" value="{{$map . '-' . $model}}" {{$role->hasPermission($map . '-' . $model) ? 'checked' : ''}}>{{$map}}
+                                        <input type="checkbox" name="permissions[]" value="{{$map . '-' . $role}}" {{$role->hasPermission($map . '-' . $role) ? 'checked' : ''}}>{{$map}}
                                     </label>
                                     <hr>
                                 @endforeach

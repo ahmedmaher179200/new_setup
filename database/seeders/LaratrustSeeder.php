@@ -22,13 +22,7 @@ class LaratrustSeeder extends Seeder
             'description'   => 'can do any thing',
         ]);
 
-        //permission
-        $rols = [
-                "admins",
-                "roles",
-            ];
-
-        foreach($rols as $rol){
+        foreach(config('global.roles') as $rol){
             $create = Permission::create([
                 'name'          => 'create-' . $rol,
                 'display_name'  => 'Create ' . $rol,

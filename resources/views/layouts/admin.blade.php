@@ -9,6 +9,7 @@
     @yield('content')
 </div>
 
-{{-- @include('admins.partials._session') --}}
-
 @include('admins.includes.footer')
+
+@include('admins.partials._session')
+

@@ -25,6 +25,13 @@
   <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/summernote/summernote-bs4.min.css')}}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/toastr/toastr.min.css')}}">
   
   @if (app()->getLocale() == 'ar')
     <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
