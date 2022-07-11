@@ -41,7 +41,7 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="exampleInputEmail1">{{ trans('admin.Name') }}</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Name') }}" name="name">
+                          <input type="text" value="{{ old('name') }}" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Name') }}" name="name">
                           @error('name')
                             <span style="color: red; margin: 20px;">
                                 {{ $message }}
@@ -53,7 +53,7 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">{{ trans('admin.Description') }}</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Description') }}" name="description">
+                            <input type="text" value="{{ old('description') }}" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Description') }}" name="description">
                             @error('description')
                             <span style="color: red; margin: 20px;">
                                 {{ $message }}

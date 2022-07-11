@@ -55,16 +55,14 @@
                             <td>{{$admin->getRole()}}</td>
                             <td>
                                     <div class="btn-group">
-                                    <button type="button" class="btn btn-success">Action</button>
+                                    <button type="button" class="btn btn-success">{{ trans('admin.Actions') }}</button>
                                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
+                                      @if (auth('admin')->user()->isAbleTo('update-admins'))
+                                        <a class="dropdown-item" href="{{url('dashboard/admins/edit/' . $admin->id)}}">{{ trans('admin.Edit') }}</a>
+                                      @endif
                                     </div>
                                     </div>
                                 </td>

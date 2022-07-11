@@ -29,7 +29,7 @@ return [
     'Create'  => 'Create',
     'Username'  => 'Username',
     'Password'  => 'Password',
-    ''  => '',
+    'Edit'  => 'Edit',
     ''  => '',
     ''  => '',
     ''  => '',

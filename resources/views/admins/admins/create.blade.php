@@ -54,7 +54,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">{{ trans('admin.Username') }}</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Username') }}" name="username">
+                                    <input type="text"  value="{{ old('username') }}" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Username') }}" name="username">
                                     @error('username')
                                         <span style="color: red; margin: 20px;">
                                             {{ $message }}
