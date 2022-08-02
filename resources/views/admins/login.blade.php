@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index2.html">{{ trans('admin.App Name') }}</a>
+    <a href="index2.html">{{ trans('admin.Taahied') }}</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -55,7 +55,9 @@
   </div>
 </div>
 <!-- /.login-box -->
-
+@if (session('error'))
+  <span style="color: red">username or password is wrong</span>
+@endif
 <!-- jQuery -->
 <script src="{{ asset('public/admin/dashboard/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->

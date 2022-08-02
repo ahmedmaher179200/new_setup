@@ -9,7 +9,7 @@
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-            <h1 class="m-0">{{ trans('admin.Dashboard') }}</h1>
+            <h1 class="m-0">{{ trans('admin.Roles') }}</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -90,7 +90,7 @@
   
                   </div>
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">save</button>
+                    <button type="submit" class="btn btn-primary">{{ trans('admin.Add') }}</button>
                   </div>
                 </form>
               </div>

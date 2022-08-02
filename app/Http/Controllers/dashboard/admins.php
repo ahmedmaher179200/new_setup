@@ -13,7 +13,7 @@ class admins extends Controller
 {
     public function index(){
         //select all admin
-        $admins = Admin::where('id', '!=', auth('admin')->user()->id)->get();
+        $admins = Admin::get();
         
         return view('admins.admins.index')->with('admins', $admins);
     }

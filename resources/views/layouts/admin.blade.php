@@ -1,3 +1,4 @@
+@yield('style')
 
 @include('admins.includes.header')
 
@@ -11,5 +12,6 @@
 
 @include('admins.includes.footer')
 
-@include('admins.partials._session')
+@yield('script')
 
+@include('admins.partials._session')

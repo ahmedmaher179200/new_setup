@@ -1,90 +1,102 @@
 @extends('layouts.admin')
 
-@section('title', 'roles-edit')
+@section('title', "edit Role")
 
 
 @section('content')
-    <div class="content-wrapper">
-
-        <section class="content-header">
-
-            <h1>{{ trans('admin.edit') }}</h1>
-
-            <ol class="breadcrumb">
-                <li> <a href="#"><i class="fa fa-dashboard"></i>{{ trans('admin.dashboard') }}</a></li>
-                <li> <a href="#"><i class="fa fa-users"></i>{{ trans('admin.role') }}</a></li>
-                <li class="active"><i class="fa fa-edit"></i>{{ trans('admin.edit') }}</li>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">{{ trans('admin.Roles') }}</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/roles')}}">{{ trans('admin.Roles') }}</a> / {{ trans('admin.Edit') }}</li>
             </ol>
-        </section>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-        <section class="content">
 
-            <div class="box box-primary">
-
-                <div class="box-body">
-
-                    {{-- @include('admins.partials._errors') --}}
-                    <form action="" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row" style="margin: 0 !important;">
-                        
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>{{ trans('admin.name') }}</label>
-                                <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name"
-                                    placeholder="{{ trans('admin.name') }}" value="{{ $role->name }}" required autocomplete="off">
-                                @error('name')
-                                    <small class=" text text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </small>
-                                @enderror
-                            </div>
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">{{ trans('admin.Edit') }}</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form method="post" action="">
+                @csrf
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">{{ trans('admin.Name') }}</label>
+                          <input type="text" value="{{$role->name}}" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Name') }}" name="name">
+                          @error('name')
+                            <span style="color: red; margin: 20px;">
+                                {{ $message }}
+                            </span>
+                          @enderror
                         </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>{{ trans('admin.description') }}</label>
-                                <input type="text" class="form-control  @error('description') is-invalid @enderror" name="description"
-                                placeholder="{{ trans('admin.description') }}" value="{{ $role->description }}" required autocomplete="off">
-                                @error('description')
-                                    <small class=" text text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </small>
-                                @enderror
-                            </div>
+                      </div>
+  
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">{{ trans('admin.Description') }}</label>
+                            <input type="text" value="{{$role->description}}" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Description') }}" name="description">
+                            @error('description')
+                            <span style="color: red; margin: 20px;">
+                                {{ $message }}
+                            </span>
+                            @enderror
                         </div>
-
-                        @foreach (config('global.roles') as $role)
-                            <div class="list-group col-md-3" style="padding-left: 15px !important;">
-                                <a href="#" class="list-group-item active">
-                                    {{$role}}
-                                </a>
-                                {{-- --}}
-                                @foreach (config('global.maps') as $map)
-                                    <label>
-                                        <input type="checkbox" name="permissions[]" value="{{$map . '-' . $role}}" {{$role->hasPermission($map . '-' . $role) ? 'checked' : ''}}>{{$map}}
-                                    </label>
-                                    <hr>
-                                @endforeach
-                            </div>
-                        @endforeach
-
-                        <div class="row" style="margin: 0 !important;">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>
-                                        {{ trans('admin.save') }}</button>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+                        @foreach (config('global.roles') as $model)
+                            <div class="col-lg-3">
+                                <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">{{$model}}</h3>
+                                </div>
+                                
+                                <div class="card-body">
+                                    @foreach (config('global.maps') as $map)
+                                        <div class="form-group clearfix">
+                                            <div class="icheck-success d-inline">
+                                                <input type="checkbox" id="{{$map . '-' . $model}}" name="permissions[]" value="{{$map . '-' . $model}}" {{$role->hasPermission($map . '-' . $model) ? 'checked' : ''}}>
+                                                <label for="{{$map . '-' . $model}}">
+                                                {{$map}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                                 </div>
                             </div>
-                        </div>
-                    </form> {{-- end of form --}}
-
-                </div> {{-- end of box body --}}
-
-            </div> {{-- end of box --}}
-
-        </section><!-- end of content -->
-
-    </div><!-- end of content wrapper -->
+                        @endforeach
+                    </div>
+  
+                  </div>
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">{{ trans('admin.Save') }}</button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card -->
+            </div>
+        </div><!-- /.container-fluid -->
+      </section>
 
 @endsection
