@@ -63,6 +63,10 @@
                                       @if (auth('admin')->user()->isAbleTo('update-admins'))
                                         <a class="dropdown-item" href="{{url('dashboard/roles/edit/' . $role->id)}}">{{ trans('admin.Edit') }}</a>
                                       @endif
+
+                                      @if (auth('admin')->user()->isAbleTo('delete-admins'))
+                                        <a class="dropdown-item" href="{{url('dashboard/roles/delete/' . $role->id)}}">{{ trans('admin.Delete') }}</a>
+                                      @endif
                                     </div>
                                   </div>
                             </td>

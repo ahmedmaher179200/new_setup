@@ -7,53 +7,53 @@ use App\Http\Requests\admin\createRequest;
 use App\Http\Requests\admin\editRequest;
 use App\Models\Admin;
 use App\Models\Role;
+use App\Repositories\dashboard\adminsRepository;
 use Illuminate\Support\Facades\Hash;
 
 class admins extends Controller
 {
+    protected $adminsRepository;
+
+    public function __construct(adminsRepository $adminsRepository) {
+        $this->adminsRepository = $adminsRepository;
+    }
+
     public function index(){
-        //select all admin
         $admins = Admin::get();
-        
         return view('admins.admins.index')->with('admins', $admins);
     }
 
     public function delete($id){
         $admin = Admin::find($id);
 
-        //if admin not found
-        if($admin == null){
-            return redirect('dashboard/admins')->with('error', 'delete faild');
-        }
+        if($admin == null)
+            return redirect('dashboard/admins')->with('error', 'faild');
 
-        //delete admin
         $admin->delete();
 
-        return redirect('dashboard/admins')->with('success', 'edit success');
+        return redirect('dashboard/admins')->with('success', 'success');
     }
 
-    public function createView(){
+    public function create(){
         $roles = Role::all();
         return view('admins.admins.create')->with('roles', $roles);
     }
 
-    public function create(createRequest $request){
+    public function store(createRequest $request){
         $admin = Admin::create([
             'username'      => $request->username,
             'password'      => Hash::make($request->password),
         ]);
 
-        //add role to admin
         $admin->roles()->attach([$request->role_id]);
 
         return redirect('dashboard/admins')->with('success', 'add success');
     }
 
-    public function editView($id){
+    public function edit($id){
         $roles = Role::all();
         $admin = Admin::find($id);
 
-        //if admin not found
         if($admin == null)
             return redirect('dashboard/admins');
         
@@ -63,25 +63,11 @@ class admins extends Controller
         ]);
     }
 
-    public function edit($id, editRequest $Request){
+    public function Update($id, editRequest $request){
         $admin = Admin::find($id);
 
-        //check if admin change password
-        if($Request->password == NULL){
-            $password = $admin->password;
-        } else{
-            $password = Hash::make($Request->password);
-        }
+        $this->adminsRepository->update($admin, $request);
 
-        //update data
-        $admin->username       = $Request->username;
-        $admin->password       = $password;
-        $admin->save();
-
-        //change admin role
-        $admin->roles()->detach([$admin->getRoleId()]);//delete old
-        $admin->roles()->attach([$Request->role_id]);//add new
-
-        return redirect('dashboard/admins')->with('success', 'edit success');
+        return redirect('dashboard/admins')->with('success', 'success');
     }
 }
