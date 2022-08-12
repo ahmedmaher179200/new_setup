@@ -18,37 +18,20 @@ class LaratrustSeeder extends Seeder
         //role seeder
         $role = Role::create([
             'name'          => 'super_admin',
-            'display_name'  => 'super admin',
+            'display_name'  => 'الأدارة',
             'description'   => 'can do any thing',
         ]);
 
-        foreach(config('global.roles') as $rol){
-            $create = Permission::create([
-                'name'          => 'create-' . $rol,
-                'display_name'  => 'Create ' . $rol,
-                'description'   => 'create new' . $rol,
-            ]);
-
-            $read = Permission::create([
-                'name'          => 'read-' . $rol,
-                'display_name'  => 'read ' . $rol,
-                'description'   => 'read ' . $rol,
-            ]);
-
-            $update = Permission::create([
-                'name'          => 'update-' . $rol,
-                'display_name'  => 'update ' . $rol,
-                'description'   => 'update ' . $rol,
-            ]);
-
-            $delete = Permission::create([
-                'name'          => 'delete-' . $rol,
-                'display_name'  => 'delete ' . $rol,
-                'description'   => 'delete ' . $rol,
-            ]);
-
-            //add to permission_role
-            $role->attachPermissions([$create, $read, $update, $delete]);
+        foreach(config('global.roles') as $key => $values){
+            foreach($values as $value){
+                $sub_role = Permission::create([
+                    'name'          => $value . '-' . $key,
+                    'display_name'  => $value . ' ' . $key,
+                    'description'   => $value . ' ' . $key,
+                ]);
+                
+                $role->attachPermissions([$sub_role]);
+            }
         }
     }
 }

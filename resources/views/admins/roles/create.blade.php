@@ -64,26 +64,26 @@
                     </div>
   
                     <div class="row">
-                        @foreach (config('global.roles') as $role)
+                        @foreach (config('global.roles') as $key => $values)
                             <div class="col-lg-3">
                                 <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">{{$role}}</h3>
+                                    <h3 class="card-title">{{$key}}</h3>
                                 </div>
                                 
                                 <div class="card-body">
-                                    @foreach (config('global.maps') as $map)
+                                    @foreach ($values as $value)
                                         <div class="form-group clearfix">
                                             <div class="icheck-success d-inline">
-                                                <input type="checkbox" id="{{$map . '-' . $role}}" name="permissions[]" value="{{$map . '-' . $role}}">
-                                                <label for="{{$map . '-' . $role}}">
-                                                {{$map}}
+                                                <input type="checkbox" id="{{$value . '-' . $key}}" name="permissions[]" value="{{$value . '-' . $key}}">
+                                                <label for="{{$value . '-' . $key}}">
+                                                {{$value}}
                                                 </label>
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
-                                </div>
+                              </div>
                             </div>
                         @endforeach
                     </div>

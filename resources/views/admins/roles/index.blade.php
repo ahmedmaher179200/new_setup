@@ -30,7 +30,7 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-header">
-              @if (auth('admin')->user()->isAbleTo('create-admins'))
+              @if (auth('admin')->user()->isAbleTo('create-roles'))
                 <a href="{{url('dashboard/roles/create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
               @else
                 <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
@@ -60,11 +60,11 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu" role="menu">
-                                      @if (auth('admin')->user()->isAbleTo('update-admins'))
+                                      @if (auth('admin')->user()->isAbleTo('update-roles'))
                                         <a class="dropdown-item" href="{{url('dashboard/roles/edit/' . $role->id)}}">{{ trans('admin.Edit') }}</a>
                                       @endif
 
-                                      @if (auth('admin')->user()->isAbleTo('delete-admins'))
+                                      @if (auth('admin')->user()->isAbleTo('delete-roles'))
                                         <a class="dropdown-item" href="{{url('dashboard/roles/delete/' . $role->id)}}">{{ trans('admin.Delete') }}</a>
                                       @endif
                                     </div>

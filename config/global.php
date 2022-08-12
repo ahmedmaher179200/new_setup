@@ -1,15 +1,8 @@
 <?php
 return [
     'roles' => [
-        'admins',
-        'roles',
-    ],
-
-    'maps' => [
-        'read',
-        'create',
-        'update',
-        'delete'
+        'admins' => ['read', 'create', 'update', 'delete'],
+        'roles' => ['read', 'create', 'update', 'delete','all'],
     ],
 ]
 ?>
