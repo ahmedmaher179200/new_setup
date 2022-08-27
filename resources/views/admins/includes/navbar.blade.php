@@ -29,8 +29,8 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <div style=" position: relative;top: -10px;">
-            <img src="{{auth('admin')->user()->getImage()}}" style="width: 41px;" class="img-circle" alt="User Image">
-            {{auth('admin')->user()->username}}
+            <img src="{{auth('user')->user()->getImage()}}" style="width: 41px;" class="img-circle" alt="User Image">
+            {{auth('user')->user()->username}}
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

@@ -30,7 +30,7 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-header">
-              @if (auth('admin')->user()->isAbleTo('create-roles'))
+              @if (auth('user')->user()->isAbleTo('create-roles'))
                 <a href="{{url('dashboard/roles/create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
               @else
                 <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
@@ -51,24 +51,27 @@
                     @foreach ($roles as $role)
                         <tr>
                             <td>{{$role->id}}</td>
-                            <td>{{$role->name}}</td>
+                            <td>{{$role->display_name}}</td>
                             <td>{{$role->description}}</td>
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-success">{{ trans('admin.Actions') }}</button>
                                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                        <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu" role="menu">
-                                      @if (auth('admin')->user()->isAbleTo('update-roles'))
+                                      @if (auth('user')->user()->isAbleTo('update-roles'))
                                         <a class="dropdown-item" href="{{url('dashboard/roles/edit/' . $role->id)}}">{{ trans('admin.Edit') }}</a>
                                       @endif
 
-                                      @if (auth('admin')->user()->isAbleTo('delete-roles'))
-                                        <a class="dropdown-item" href="{{url('dashboard/roles/delete/' . $role->id)}}">{{ trans('admin.Delete') }}</a>
+                                      @if (auth('user')->user()->isAbleTo('delete-roles'))
+                                        <a class="dropdown-item" href="{{url('dashboard/roles/delete/' . $role->id)}}" data-toggle="modal" data-target="#modal-default-{{$role->id}}">{{ trans('admin.Delete') }}</a>
                                       @endif
                                     </div>
                                   </div>
+                                  @include('partials.delete_confirmation', [
+                                    'url' => url('dashboard/roles/destroy/' . $role->id),
+                                    'modal_id'  => 'modal-default-' . $role->id,
+                                  ])
                             </td>
                         </tr>
                     @endforeach
@@ -98,12 +101,37 @@
 
 <script>
   $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      "buttons": ["excel", "pdf", "print"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
+
+  $("#example1").DataTable({
+      "responsive": true, "lengthChange": true, "autoWidth": false,
+      "buttons": ["excel", "print", "colvis"],
+      "oLanguage": {
+          "sSearch": "{{__('admin.search')}} : ",
+          "sLoadingRecords": "{{__('admin.loading')}}",
+          "sInfo": "{{__('admin.Showing')}} _START_ {{__('admin.to')}} _END_ {{__('admin.of')}} _TOTAL_ {{__('admin.entries')}}",
+          "sInfoEmpty": "{{__('admin.no_result')}}",
+          "sEmptyTable": "{{__('admin.no_result')}}"
+      },
+
+      'buttons': [
+          {
+              extend: 'excel', text: '{{__('admin.excel')}}'
+          },
+          {
+              extend: 'print', text: '{{__('admin.print')}}'
+          },
+          {
+              extend: 'colvis', text: '{{__('admin.column_visibility')}}'
+          },
+      ],
+      "language": {
+          "paginate": {
+              "previous": "{{__('admin.previous')}}",
+              "next": "{{__('admin.next')}}",
+          }
+      }
+  }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
@@ -111,8 +139,8 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
-    });
   });
+});
 </script>
 <!--end data table-->
 @endsection

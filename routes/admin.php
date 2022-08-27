@@ -24,20 +24,21 @@ Route::group(
     ], function(){
 
         Route::group(['prefix' => 'dashboard'], function(){
-            Route::get('/login', 'App\Http\Controllers\dashboard\authentication@loginView')->name('adminlogin')->middleware('guest:admin');
-            Route::post('/login', 'App\Http\Controllers\dashboard\authentication@login')->middleware('guest:admin');
+            Route::get('/login', 'App\Http\Controllers\dashboard\authentication@loginView')->name('adminlogin')->middleware('guest:user');
+            Route::post('/login', 'App\Http\Controllers\dashboard\authentication@login')->middleware('guest:user');
         
-            Route::group(['middleware' => 'auth:admin'], function () {
+            Route::group(['middleware' => 'auth:user'], function () {
                 Route::get('/', 'App\Http\Controllers\dashboard\home@index');
                 Route::get('/logout', 'App\Http\Controllers\dashboard\authentication@logout');
         
-                Route::group(['prefix' => 'admins'],function(){
-                    Route::get('/', 'App\Http\Controllers\dashboard\admins@index');
-                    Route::get('/delete/{id}', 'App\Http\Controllers\dashboard\admins@delete');
-                    Route::get('/create', 'App\Http\Controllers\dashboard\admins@create');
-                    Route::post('/create', 'App\Http\Controllers\dashboard\admins@store');
-                    Route::get('/edit/{id}', 'App\Http\Controllers\dashboard\admins@edit');
-                    Route::post('/edit/{id}', 'App\Http\Controllers\dashboard\admins@Update');
+                Route::group(['prefix' => 'users'],function(){
+                    Route::get('/', 'App\Http\Controllers\dashboard\users@index');
+                    Route::get('/delete/{id}', 'App\Http\Controllers\dashboard\users@delete');
+                    Route::get('/create', 'App\Http\Controllers\dashboard\users@create');
+                    Route::post('/create', 'App\Http\Controllers\dashboard\users@store');
+                    Route::get('/edit/{id}', 'App\Http\Controllers\dashboard\users@edit');
+                    Route::post('/edit/{id}', 'App\Http\Controllers\dashboard\users@Update');
+                    Route::get('/destroy/{id}', 'App\Http\Controllers\dashboard\users@destroy');
                 });
             
                 Route::group(['prefix' => 'roles'],function(){
@@ -47,6 +48,7 @@ Route::group(
                     Route::post('/create', 'App\Http\Controllers\dashboard\roles@store');
                     Route::get('/edit/{id}', 'App\Http\Controllers\dashboard\roles@edit');
                     Route::post('/edit/{id}', 'App\Http\Controllers\dashboard\roles@update');
+                    Route::get('/destroy/{id}', 'App\Http\Controllers\dashboard\roles@destroy');
                 });
         
             });

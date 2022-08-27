@@ -9,7 +9,7 @@ use App\Models\Role;
 class roles extends Controller
 {
     public function index(){
-        $roles = Role::get();
+        $roles = Role::where('status', '!=', -1)->get();
         return view('admins.roles.index')->with('roles', $roles);
     }
 
@@ -64,5 +64,17 @@ class roles extends Controller
         $role->syncPermissions($request->permissions); //update role permassion
 
         return redirect('dashboard/roles')->with('success', 'success');
+    }
+
+    public function destroy($role_id){
+        $role = Role::where('status', '!=', -1)
+                                        ->find($role_id);
+
+        if($role == null)
+            return redirect()->back()->with('error', trans('admin.faild'));
+        
+        $role->update(['status'=> -1]);
+
+        return redirect()->back()->with('success', trans('admin.success'));
     }
 }

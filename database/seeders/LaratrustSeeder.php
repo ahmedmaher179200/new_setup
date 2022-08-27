@@ -17,8 +17,8 @@ class LaratrustSeeder extends Seeder
     {
         //role seeder
         $role = Role::create([
-            'name'          => 'super_admin',
-            'display_name'  => 'الأدارة',
+            'name'          => 'الادارة',
+            'display_name'  => 'الادارة',
             'description'   => 'can do any thing',
         ]);
 

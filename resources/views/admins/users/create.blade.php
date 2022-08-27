@@ -28,7 +28,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/admins')}}">{{ trans('admin.Admins') }}</a> / {{ trans('admin.Create') }}</li>
+                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/users')}}">{{ trans('admin.Users') }}</a> / {{ trans('admin.Create') }}</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->

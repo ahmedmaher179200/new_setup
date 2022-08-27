@@ -73,7 +73,7 @@ return [
     |
     */
     'user_models' => [
-        'users' => \App\Models\Admin::class,
+        'users' => \App\Models\User::class,
     ],
 
     /*
@@ -117,9 +117,9 @@ return [
          */
         'teams' => 'teams',
 
-        'role_user' => 'role_admin',
+        'role_user' => 'role_user',
 
-        'permission_user' => 'permission_admin',
+        'permission_user' => 'permission_user',
 
         'permission_role' => 'permission_role',
     ],
@@ -255,7 +255,7 @@ return [
     | Laratrust Panel
     |--------------------------------------------------------------------------
     |
-    | Section to manage everything related with the admin panel for the roles and permissions.
+    | Section to manage everything related with the user panel for the roles and permissions.
     |
     */
     'panel' => [
@@ -264,8 +264,8 @@ return [
         | Laratrust Panel Register
         |--------------------------------------------------------------------------
         |
-        | This manages if routes used for the admin panel should be registered.
-        | Turn this value to false if you don't want to use Laratrust admin panel
+        | This manages if routes used for the user panel should be registered.
+        | Turn this value to false if you don't want to use Laratrust user panel
         |
         */
         'register' => false,

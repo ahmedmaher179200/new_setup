@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\admin;
+namespace App\Http\Requests\users;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class createRequest extends FormRequest
+class login extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class createRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|unique:admins',
+            'username' => 'required|string',
             'password' => 'required|string',
         ];
     }

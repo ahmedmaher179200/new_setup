@@ -28,7 +28,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/admins')}}">{{ trans('admin.Admins') }}</a> / {{ trans('admin.Edit') }}</li>
+                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/users')}}">{{ trans('admin.Users') }}</a> / {{ trans('admin.Edit') }}</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -55,7 +55,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">{{ trans('admin.Username') }}</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Username') }}" name="username" value="{{$admin->username}}">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Username') }}" name="username" value="{{$user->username}}">
                                     @error('username')
                                         <span style="color: red; margin: 20px;">
                                             {{ $message }}
@@ -81,7 +81,7 @@
                                     <label>{{ trans('admin.Roles') }}</label>
                                     <select class="form-control select2" style="width: 100%;" name="role_id">
                                         @foreach ($roles as $role)
-                                            <option value="{{$role->id}}" @if ($role->id == $admin->getRoleId()) selected @endif>{{$role->name}}</option>
+                                            <option value="{{$role->id}}" @if ($role->id == $user->getRoleId()) selected @endif>{{$role->name}}</option>
                                         @endforeach>
                                     </select>
                                     @error('role_id')

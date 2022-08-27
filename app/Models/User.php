@@ -7,27 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable
 {
+    use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
+    
+    protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -39,6 +29,37 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'verified_at' => 'datetime',
     ];
+
+    //relations
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    //
+    public function getImage(){
+        if($this->Image != null){
+            return url('public/uploads/users/' . $this->Image->src);
+        } else {
+            return url('public/uploads/users/default.jpg');
+        }
+    }
+
+    public function getRole(){
+        if(count($this->roles) > 0){
+            return $this->roles[0]->name;
+        } else {
+            return null;
+        }
+    }
+
+    public function getRoleId(){
+        if(count($this->roles) > 0){
+            return $this->roles[0]->id;
+        } else {
+            return null;
+        }
+    }
 }

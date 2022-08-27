@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class adminSeeder extends Seeder
+class userSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,11 +14,12 @@ class adminSeeder extends Seeder
      */
     public function run()
     {
-        $admin = Admin::create([
+        $user = User::create([
             'username'  => 'ahmed1',
+            'name'  => 'ahmed maher',
             'password'  => bcrypt('ahmed1'),
         ]);
 
-        $admin->attachRole('super_admin');
+        $user->attachRole('الادارة');
     }
 }

@@ -5,10 +5,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{auth('admin')->user()->getImage()}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{auth('user')->user()->getImage()}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{auth('admin')->user()->username}}</a>
+          <a href="#" class="d-block">{{auth('user')->user()->username}}</a>
         </div>
       </div>
 
@@ -26,8 +26,8 @@
           </a>
         </li>
           {{-- menu-open --}}
-          @if (auth('admin')->user()->isAbleTo('read-admins'))
-            <li class="nav-item">
+          @if (auth('user')->user()->isAbleTo('read-users'))
+            <li class="nav-item {{(request()->is('*/dashboard/users') || request()->is('*/dashboard/users/*') || request()->is('*/dashboard/roles') || request()->is('*/dashboard/roles/*'))? 'menu-open':''}}">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
@@ -37,9 +37,9 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{url('dashboard/admins')}}" class="nav-link {{(request()->is('*/dashboard/admins') || request()->is('*/dashboard/admins/*'))? 'active':''}}">
+                  <a href="{{url('dashboard/users')}}" class="nav-link {{(request()->is('*/dashboard/users') || request()->is('*/dashboard/users/*'))? 'active':''}}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>{{ trans('admin.Admins') }}</p>
+                    <p>{{ trans('admin.Users') }}</p>
                   </a>
                 </li>
 
