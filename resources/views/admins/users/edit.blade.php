@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'admins-edit')
+@section('title', trans('admin.Users'))
 
 @section('style')
     <!-- Bootstrap Color Picker -->

@@ -19,6 +19,7 @@ class Images extends Migration
             $table->string('imageable_type')->nullable();
             $table->string('src')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

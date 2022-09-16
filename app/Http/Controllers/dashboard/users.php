@@ -23,29 +23,13 @@ class users extends Controller
         return view('admins.users.index')->with('users', $users);
     }
 
-    public function delete($id){
-        $user = User::find($id);
-
-        if($user == null)
-            return redirect('dashboard/users')->with('error', 'faild');
-
-        $user->delete();
-
-        return redirect('dashboard/users')->with('success', 'success');
-    }
-
     public function create(){
         $roles = Role::all();
         return view('admins.users.create')->with('roles', $roles);
     }
 
     public function store(createRequest $request){
-        $user = User::create([
-            'username'      => $request->username,
-            'password'      => Hash::make($request->password),
-        ]);
-
-        $user->roles()->attach([$request->role_id]);
+        $this->usersRepository->insert($request);
 
         return redirect('dashboard/users')->with('success', 'success');
     }
@@ -53,6 +37,9 @@ class users extends Controller
     public function edit($id){
         $roles = Role::all();
         $user = User::find($id);
+
+        if($user->id == User::first()->id)
+            return redirect('dashboard/users')->with('error', trans('admin.you can\'t update this user'));
 
         if($user == null)
             return redirect('dashboard/users');
@@ -73,6 +60,9 @@ class users extends Controller
 
     public function destroy($user_id){
         $user = User::find($user_id);
+
+        if($user->id == User::first()->id)
+            return redirect('dashboard/users')->with('error', trans('admin.you can\'t delete this user'));
 
         if($user == null)
             return redirect()->back()->with('error', trans('admin.faild'));

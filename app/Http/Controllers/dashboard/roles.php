@@ -4,12 +4,20 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\roles\createRequest;
+use App\Http\Requests\roles\editRequest;
 use App\Models\Role;
+use App\Repositories\dashboard\rolesRepository;
 
 class roles extends Controller
 {
+    protected $rolesRepository;
+
+    public function __construct(rolesRepository $rolesRepository) {
+        $this->rolesRepository = $rolesRepository;
+    }
+
     public function index(){
-        $roles = Role::where('status', '!=', -1)->get();
+        $roles = Role::get();
         return view('admins.roles.index')->with('roles', $roles);
     }
 
@@ -18,27 +26,9 @@ class roles extends Controller
     }
 
     public function store(createRequest $request){
-        $role = Role::create([
-            'name'          => $request->name,
-            'display_name'  => $request->name,
-            'description'   => $request->description
-        ]);
-
-        //add permissions to this role
-        $role->attachPermissions($request->permissions);
+        $this->rolesRepository->insert($request);
 
         return redirect('dashboard/roles')->with('success', 'success');
-    }
-
-    public function delete($id){
-        $role = Role::find($id);
-
-        if($role == null)
-            return redirect('dashboard/roles')->with('error', 'delete faild');
-
-        $role->delete();
-
-        return redirect('dashboard/roles')->with('success', 'edit success');
     }
 
     public function edit($role_id){
@@ -50,18 +40,16 @@ class roles extends Controller
         return view('admins.roles.edit')->with('role', $role);
     }
 
-    public function update($role_id, createRequest $request){
+    public function update($role_id, editRequest $request){
         $role = Role::find($role_id);
+
+        if($role->id == Role::first()->id)
+            return redirect('dashboard/roles')->with('error', trans('admin.you can\'t update this role'));
 
         if($role == null)
             return redirect('dashboard/roles');
 
-        $role->name            = $request->name;
-        $role->display_name    = $request->name;
-        $role->description     = $request->description;
-        $role->save();
-
-        $role->syncPermissions($request->permissions); //update role permassion
+        $this->rolesRepository->update($role, $request);
 
         return redirect('dashboard/roles')->with('success', 'success');
     }
@@ -70,10 +58,13 @@ class roles extends Controller
         $role = Role::where('status', '!=', -1)
                                         ->find($role_id);
 
+        if($role->id == Role::first()->id)
+            return redirect('dashboard/roles')->with('error', trans('admin.you can\'t delete this role'));
+
         if($role == null)
             return redirect()->back()->with('error', trans('admin.faild'));
         
-        $role->update(['status'=> -1]);
+        $role->delete();
 
         return redirect()->back()->with('success', trans('admin.success'));
     }

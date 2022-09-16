@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', "Add Admin")
+@section('title', trans('admin.Users'))
 
 @section('style')
     <!-- Bootstrap Color Picker -->
@@ -54,8 +54,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">{{ trans('admin.Username') }}</label>
-                                    <input type="text"  value="{{ old('username') }}" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Username') }}" name="username">
+                                    <label for="username">{{ trans('admin.Username') }}</label>
+                                    <input type="text"  value="{{ old('username') }}" class="form-control" id="username" name="username">
                                     @error('username')
                                         <span style="color: red; margin: 20px;">
                                             {{ $message }}
@@ -66,8 +66,20 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">{{ trans('admin.Password') }}</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="{{ trans('admin.Password') }}" name="password">
+                                    <label for="name">{{ trans('admin.Name') }}</label>
+                                    <input type="text"  value="{{ old('name') }}" class="form-control" id="name" name="name">
+                                    @error('name')
+                                        <span style="color: red; margin: 20px;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="password">{{ trans('admin.Password') }}</label>
+                                    <input type="password" class="form-control" id="password" name="password">
                                     @error('password')
                                         <span style="color: red; margin: 20px;">
                                             {{ $message }}

@@ -24,7 +24,8 @@ class editRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:roles,name,' . $this->id,
+            'permissions'   => 'required',
             'description' => 'required|string',
         ];
     }

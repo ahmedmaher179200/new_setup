@@ -21,6 +21,7 @@ class LaratrustSetupTables extends Migration
             $table->string('description')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         // Create table for storing permissions

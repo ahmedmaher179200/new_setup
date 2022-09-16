@@ -25,6 +25,7 @@ class editRequest extends FormRequest
     {
         return [
             'username' => 'required|string|unique:users,username,' . $this->id,
+            'name'     => 'required|string',
             'password' => 'nullable|string',
         ];
     }
