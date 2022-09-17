@@ -42,6 +42,7 @@
                 <thead>
                 <tr>
                   <th>#</th>
+                  <th>{{ trans('admin.Username') }}</th>
                   <th>{{ trans('admin.Name') }}</th>
                   <th>{{ trans('admin.Role') }}</th>
                   <th>{{ trans('admin.Actions') }}</th>
@@ -52,6 +53,7 @@
                         <tr>
                             <td>{{$user->id}}</td>
                             <td>{{$user->username}}</td>
+                            <td>{{$user->name}}</td>
                             <td>{{$user->getRole()}}</td>
                             <td>
                                 <div class="btn-group">

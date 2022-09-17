@@ -9,6 +9,8 @@ use App\Models\Role;
 use App\Models\User;
 use App\Repositories\dashboard\usersRepository;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class users extends Controller
 {
