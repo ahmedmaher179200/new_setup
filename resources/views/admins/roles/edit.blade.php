@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+setting@extends('layouts.admin')
 
 @section('title', "edit Role")
 

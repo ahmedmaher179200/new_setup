@@ -30,12 +30,13 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-          <a href="{{url('dashboard')}}" class="nav-link {{request()->is('*/dashboard')? 'active':''}}">
-            <p>
-              {{ trans('admin.Dashboard') }}
-            </p>
-          </a>
-        </li>
+            <a href="{{url('dashboard')}}" class="nav-link {{request()->is('*/dashboard')? 'active':''}}">
+              <p>
+                {{ trans('admin.Dashboard') }}
+              </p>
+            </a>
+          </li>
+
           {{-- menu-open --}}
           @if (auth('user')->user()->isAbleTo('read-users'))
             <li class="nav-item {{(request()->is('*/dashboard/users') || request()->is('*/dashboard/users/*') || request()->is('*/dashboard/roles') || request()->is('*/dashboard/roles/*'))? 'menu-open':''}}">
@@ -64,6 +65,15 @@
             </li>
           @endif
           
+          @if (auth('user')->user()->super == 1)
+            <li class="nav-item">
+              <a href="{{url('dashboard/settings/edit')}}" class="nav-link {{request()->is('*/dashboard/settings/edit')? 'active':''}}">
+                <p>
+                  {{ trans('admin.Settings') }}
+                </p>
+              </a>
+            </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

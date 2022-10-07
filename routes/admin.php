@@ -50,6 +50,11 @@ Route::group(
                     Route::post('/edit/{id}', 'App\Http\Controllers\dashboard\roles@update');
                     Route::get('/destroy/{id}', 'App\Http\Controllers\dashboard\roles@destroy');
                 });
+
+                Route::group(['prefix' => 'settings'],function(){
+                    Route::get('/edit', 'App\Http\Controllers\dashboard\settings@edit');
+                    Route::post('/edit', 'App\Http\Controllers\dashboard\settings@update');
+                });
             });
         });
 });
