@@ -31,7 +31,6 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
           <a href="{{url('dashboard')}}" class="nav-link {{request()->is('*/dashboard')? 'active':''}}">
-            <i class="nav-icon fas fa-th"></i>
             <p>
               {{ trans('admin.Dashboard') }}
             </p>
@@ -44,7 +43,7 @@
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   {{ trans('admin.Users Mangement') }}
-                  <i class="right fas fa-angle-left"></i>
+                  <i class="right fas fa-wreath"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">

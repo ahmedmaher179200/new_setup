@@ -26,8 +26,6 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/summernote/summernote-bs4.min.css')}}">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <!-- Toastr -->
