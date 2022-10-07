@@ -37,7 +37,7 @@ Route::group(
                     Route::get('/create', 'App\Http\Controllers\dashboard\users@create');
                     Route::post('/create', 'App\Http\Controllers\dashboard\users@store');
                     Route::get('/edit/{id}', 'App\Http\Controllers\dashboard\users@edit');
-                    Route::post('/edit/{id}', 'App\Http\Controllers\dashboard\users@Update');
+                    Route::post('/edit/{id}', 'App\Http\Controllers\dashboard\users@update');
                     Route::get('/destroy/{id}', 'App\Http\Controllers\dashboard\users@destroy');
                 });
             
@@ -50,7 +50,6 @@ Route::group(
                     Route::post('/edit/{id}', 'App\Http\Controllers\dashboard\roles@update');
                     Route::get('/destroy/{id}', 'App\Http\Controllers\dashboard\roles@destroy');
                 });
-        
             });
         });
 });

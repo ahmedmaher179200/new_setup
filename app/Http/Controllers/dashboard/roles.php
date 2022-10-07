@@ -14,6 +14,11 @@ class roles extends Controller
 
     public function __construct(rolesRepository $rolesRepository) {
         $this->rolesRepository = $rolesRepository;
+
+        $this->middleware('permissionMiddleware:read-roles')->only('index');
+        $this->middleware('permissionMiddleware:delete-roles')->only('destroy');
+        $this->middleware('permissionMiddleware:update-roles')->only(['edit', 'Update']);
+        $this->middleware('permissionMiddleware:create-roles')->only(['create', 'store']);
     }
 
     public function index(){
@@ -32,22 +37,14 @@ class roles extends Controller
     }
 
     public function edit($role_id){
-        $role = Role::find($role_id);
+        $role = Role::findOrFail($role_id);
 
-        if($role == null)
-            return redirect('dashboard/roles');
 
         return view('admins.roles.edit')->with('role', $role);
     }
 
     public function update($role_id, editRequest $request){
-        $role = Role::find($role_id);
-
-        if($role->id == Role::first()->id)
-            return redirect('dashboard/roles')->with('error', trans('admin.you can\'t update this role'));
-
-        if($role == null)
-            return redirect('dashboard/roles');
+        $role = Role::findOrFail($role_id);
 
         $this->rolesRepository->update($role, $request);
 
@@ -56,13 +53,10 @@ class roles extends Controller
 
     public function destroy($role_id){
         $role = Role::where('status', '!=', -1)
-                                        ->find($role_id);
+                        ->findOrFail($role_id);
 
         if($role->id == Role::first()->id)
             return redirect('dashboard/roles')->with('error', trans('admin.you can\'t delete this role'));
-
-        if($role == null)
-            return redirect()->back()->with('error', trans('admin.faild'));
         
         $role->delete();
 

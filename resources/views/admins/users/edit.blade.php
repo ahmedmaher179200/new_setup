@@ -66,6 +66,18 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">{{ trans('admin.Name') }}</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Name') }}" name="name" value="{{$user->name}}">
+                                    @error('name')
+                                        <span style="color: red; margin: 20px;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
                                     <label for="exampleInputPassword1">{{ trans('admin.Password') }}</label>
                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="{{ trans('admin.Password') }}" name="password">
                                     @error('password')

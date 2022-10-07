@@ -18,6 +18,11 @@ class users extends Controller
 
     public function __construct(usersRepository $usersRepository) {
         $this->usersRepository = $usersRepository;
+
+        $this->middleware('permissionMiddleware:read-users')->only('index');
+        $this->middleware('permissionMiddleware:delete-users')->only('destroy');
+        $this->middleware('permissionMiddleware:update-users')->only(['edit', 'Update']);
+        $this->middleware('permissionMiddleware:create-users')->only(['create', 'store']);
     }
 
     public function index(){
@@ -38,13 +43,10 @@ class users extends Controller
 
     public function edit($id){
         $roles = Role::all();
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         if($user->id == User::first()->id)
             return redirect('dashboard/users')->with('error', trans('admin.you can\'t update this user'));
-
-        if($user == null)
-            return redirect('dashboard/users');
         
         return view('admins.users.edit')->with([
             'roles' => $roles,
@@ -52,8 +54,8 @@ class users extends Controller
         ]);
     }
 
-    public function Update($id, editRequest $request){
-        $user = User::find($id);
+    public function update($id, editRequest $request){
+        $user = User::findOrFail($id);
 
         $this->usersRepository->update($user, $request);
 
@@ -61,13 +63,10 @@ class users extends Controller
     }
 
     public function destroy($user_id){
-        $user = User::find($user_id);
+        $user = User::findOrFail($user_id);
 
         if($user->id == User::first()->id)
             return redirect('dashboard/users')->with('error', trans('admin.you can\'t delete this user'));
-
-        if($user == null)
-            return redirect()->back()->with('error', trans('admin.faild'));
         
         $user->delete();
 
