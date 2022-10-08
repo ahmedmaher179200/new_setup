@@ -55,6 +55,10 @@ Route::group(
                     Route::get('/edit', 'App\Http\Controllers\dashboard\settings@edit');
                     Route::post('/edit', 'App\Http\Controllers\dashboard\settings@update');
                 });
+
+                Route::get('/profile', 'App\Http\Controllers\dashboard\profile@edit');
+                Route::post('/profile', 'App\Http\Controllers\dashboard\profile@update');
+                Route::post('/update_image', 'App\Http\Controllers\dashboard\profile@update_image')->name('admin.upload.image');
             });
         });
 });

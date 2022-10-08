@@ -31,6 +31,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="{{url('dashboard')}}" class="nav-link {{request()->is('*/dashboard')? 'active':''}}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 {{ trans('admin.Dashboard') }}
               </p>
@@ -68,6 +69,7 @@
           @if (auth('user')->user()->super == 1)
             <li class="nav-item">
               <a href="{{url('dashboard/settings/edit')}}" class="nav-link {{request()->is('*/dashboard/settings/edit')? 'active':''}}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   {{ trans('admin.Settings') }}
                 </p>

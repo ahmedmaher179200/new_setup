@@ -30,7 +30,9 @@
   <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <!-- Toastr -->
   <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/toastr/toastr.min.css')}}">
-  
+  <link rel="stylesheet" href="{{ asset('public/admin/dashboard/dist/css/custom.css')}}">
+
+
   @if (app()->getLocale() == 'ar')
     <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
     <!-- Bootstrap 4 RTL -->

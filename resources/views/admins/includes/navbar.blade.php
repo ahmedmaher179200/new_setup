@@ -34,6 +34,9 @@
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="{{url('dashboard/profile')}}" class="dropdown-item">
+            {{ trans('admin.Profile') }}
+          </a>
           <a href="{{url('dashboard/logout')}}" class="dropdown-item">
             {{ trans('admin.logout') }}
           </a>

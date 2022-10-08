@@ -91,7 +91,7 @@ return [
     'Site name'  => 'Site name',
     'Date format'   => 'Date format',
     'Time zones'  => 'Time zones',
-    ''  => '',
+    'Overflow'  => 'Overflow',
     ''  => '',
     ''  => '',
     ''  => '',
