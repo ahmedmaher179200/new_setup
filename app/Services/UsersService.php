@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\dashboard;
+namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class usersRepository
+class UsersService
 {
     public function insert($request){
         $user = User::create([

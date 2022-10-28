@@ -7,17 +7,17 @@ use App\Http\Requests\users\createRequest;
 use App\Http\Requests\users\editRequest;
 use App\Models\Role;
 use App\Models\User;
-use App\Repositories\dashboard\usersRepository;
+use App\Services\UsersService;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 
-class users extends Controller
+class UserController extends Controller
 {
-    protected $usersRepository;
+    protected $UsersService;
 
-    public function __construct(usersRepository $usersRepository) {
-        $this->usersRepository = $usersRepository;
+    public function __construct(UsersService $UsersService) {
+        $this->UsersService = $UsersService;
 
         $this->middleware('permissionMiddleware:read-users')->only('index');
         $this->middleware('permissionMiddleware:delete-users')->only('destroy');
@@ -36,7 +36,7 @@ class users extends Controller
     }
 
     public function store(createRequest $request){
-        $this->usersRepository->insert($request);
+        $this->UsersService->insert($request);
 
         return redirect('dashboard/users')->with('success', 'success');
     }
@@ -57,7 +57,7 @@ class users extends Controller
     public function update($id, editRequest $request){
         $user = User::findOrFail($id);
 
-        $this->usersRepository->update($user, $request);
+        $this->UsersService->update($user, $request);
 
         return redirect('dashboard/users')->with('success', 'success');
     }

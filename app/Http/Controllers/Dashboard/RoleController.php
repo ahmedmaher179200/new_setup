@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\roles\createRequest;
 use App\Http\Requests\roles\editRequest;
 use App\Models\Role;
-use App\Repositories\dashboard\rolesRepository;
+use App\Services\RolesService;
 
-class roles extends Controller
+class RoleController extends Controller
 {
-    protected $rolesRepository;
+    protected $RolesService;
 
-    public function __construct(rolesRepository $rolesRepository) {
-        $this->rolesRepository = $rolesRepository;
+    public function __construct(RolesService $RolesService) {
+        $this->RolesService = $RolesService;
 
         $this->middleware('permissionMiddleware:read-roles')->only('index');
         $this->middleware('permissionMiddleware:delete-roles')->only('destroy');
@@ -31,7 +31,7 @@ class roles extends Controller
     }
 
     public function store(createRequest $request){
-        $this->rolesRepository->insert($request);
+        $this->RolesService->insert($request);
 
         return redirect('dashboard/roles')->with('success', 'success');
     }
@@ -46,7 +46,7 @@ class roles extends Controller
     public function update($role_id, editRequest $request){
         $role = Role::findOrFail($role_id);
 
-        $this->rolesRepository->update($role, $request);
+        $this->RolesService->update($role, $request);
 
         return redirect('dashboard/roles')->with('success', 'success');
     }

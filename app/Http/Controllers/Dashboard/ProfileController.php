@@ -8,7 +8,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class profile extends Controller
+class ProfileController extends Controller
 {
     public function edit(){
         return view('admins.profile.show')->with([

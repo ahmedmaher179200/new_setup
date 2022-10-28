@@ -18,7 +18,7 @@ class settingsSeeder extends Seeder
             'logo'          => 'logo.jpg',
             'site_name'          => 'Name',
             'date_format'   => 'Y-m-d',
-            'time_zone'     => 'cairo',
+            'time_zone'     => 'Africa/Cairo',
         ]);
     }
 }

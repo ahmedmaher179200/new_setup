@@ -1,8 +1,13 @@
 <?php
+
+use App\Models\Setting;
+
 return [
     'roles' => [
         'users' => ['read', 'create', 'update', 'delete'],
         'roles' => ['read', 'create', 'update', 'delete'],
     ],
+
+    'app-name' => 'Name',
 ]
 ?>

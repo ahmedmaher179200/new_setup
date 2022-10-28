@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
-class settings extends Controller
+class SettingController extends Controller
 {
     public function edit(){
         $setting = Setting::first();

@@ -7,7 +7,7 @@ use App\Http\Requests\users\login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class authentication extends Controller
+class AuthenticationController extends Controller
 {
     public function loginView(){
         return view('admins.login');

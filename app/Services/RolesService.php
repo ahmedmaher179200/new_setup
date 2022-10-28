@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\dashboard;
+namespace App\Services;
 
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
-class rolesRepository
+class RolesService
 {
     public function insert($request){
         $role = Role::create([
