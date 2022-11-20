@@ -45,6 +45,7 @@
                   <th>{{ trans('admin.Username') }}</th>
                   <th>{{ trans('admin.Name') }}</th>
                   <th>{{ trans('admin.Role') }}</th>
+                  <th>{{ trans('admin.Created at') }}</th>
                   <th>{{ trans('admin.Actions') }}</th>
                 </tr>
                 </thead>
@@ -55,6 +56,7 @@
                             <td>{{$user->username}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->getRole()}}</td>
+                            <td>{{$user->created_at}}</td>
                             <td>
                                 <div class="btn-group">
                                   <button type="button" class="btn btn-success">{{ trans('admin.Actions') }}</button>

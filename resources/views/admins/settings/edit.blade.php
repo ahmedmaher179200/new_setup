@@ -83,9 +83,9 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>{{ trans('admin.Date format') }}</label>
-                                    <select class="form-control select2" style="width: 100%;" name="date_formats">
+                                    <select class="form-control select2" style="width: 100%;" name="date_format">
                                         @foreach (config('date_formats.blade') as $date_format)
-                                            <option value="{{$date_format['format']}}" @if ($setting->date_format == $date_format['format']) selected @endif>{{$date_format['format']}}</option>
+                                            <option value="{{$date_format['format']}}" @if ($setting->date_format == $date_format['format']) selected @endif>{{date($date_format['format'])}}</option>
                                         @endforeach>
                                     </select>
                                     @error('date_formats')

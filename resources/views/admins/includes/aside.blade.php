@@ -42,7 +42,7 @@
           @if (auth('user')->user()->isAbleTo('read-users'))
             <li class="nav-item {{(request()->is('*/dashboard/users') || request()->is('*/dashboard/users/*') || request()->is('*/dashboard/roles') || request()->is('*/dashboard/roles/*'))? 'menu-open':''}}">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="fas fa-user"></i>
                 <p>
                   {{ trans('admin.Users Mangement') }}
                   <i class="right fas fa-wreath"></i>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\helper;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,7 @@ class User extends Authenticatable
 {
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use helper;
     
     protected $table = 'users';
 
@@ -62,5 +64,9 @@ class User extends Authenticatable
         } else {
             return null;
         }
+    }
+
+    public function getCreatedAtAttribute(){
+        return $this->date_format($this->attributes['created_at']);
     }
 }

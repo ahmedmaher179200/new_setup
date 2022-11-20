@@ -44,6 +44,7 @@
                     <th>#</th>
                     <th>{{ trans('admin.Name') }}</th>
                     <th>{{ trans('admin.Description') }}</th>
+                    <th>{{ trans('admin.Created at') }}</th>
                     <th>{{ trans('admin.Actions') }}</th>
                 </tr>
                 </thead>
@@ -53,6 +54,7 @@
                             <td>{{$role->id}}</td>
                             <td>{{$role->display_name}}</td>
                             <td>{{$role->description}}</td>
+                            <td>{{$role->created_at}}</td>
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-success">{{ trans('admin.Actions') }}</button>

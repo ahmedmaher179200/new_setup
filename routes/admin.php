@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -15,7 +15,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something great!
 |
 */
-date_default_timezone_set('Africa/cairo');
+// date_default_timezone_set(Setting::first()->time_zone);
 
 Route::group(
     [
