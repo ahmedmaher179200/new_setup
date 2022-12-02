@@ -38,42 +38,6 @@
                     @csrf
                     @include('admins.roles.form')
 
-                    {{-- <div class="card-body">
-                      <div class="row">
-                        <div class="col-lg-6">
-                            <x-form.input type="text" class="form-control"
-                                name="name" value="{{ $role->name }}"
-                                label="{{ trans('admin.Name') }}" attribute="required"/>
-                        </div>
-    
-                        <div class="col-lg-6">
-                            <x-form.input type="text" class="form-control"
-                                name="description" value="{{ $role->description }}"
-                                label="{{ trans('admin.Description') }}" attribute="required"/>
-                        </div>
-                      </div>
-    
-                      <div class="row">
-                          @foreach (config('global.roles') as $key => $values)
-                              <div class="col-lg-3">
-                                  <div class="card card-primary">
-                                  <div class="card-header">
-                                      <h3 class="card-title">{{$key}}</h3>
-                                  </div>
-                                  
-                                  <div class="card-body">
-                                      @foreach ($values as $value)
-                                        <x-form.checkbox class="form-control" name="permissions[]"
-                                          label="{{$value}}" tag="{{$value . '-' . $key}}"
-                                          value="{{$value . '-' . $key}}" attribute="{{$role->hasPermission($value . '-' . $key) ? 'checked' : ''}}"/>
-                                      @endforeach
-                                  </div>
-                                  </div>
-                              </div>
-                          @endforeach
-                      </div>
-    
-                    </div> --}}
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary">{{ trans('admin.Save') }}</button>
                   </div>

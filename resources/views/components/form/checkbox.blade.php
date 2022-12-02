@@ -1,5 +1,5 @@
 <div class="form-group clearfix">
-    <div class="icheck-success d-inline">
+    <div class="">
         <input type="checkbox" id="{{$tag}}" name="{{$name}}" value="{{$value}}" {{$attribute}}>
         <label for="{{$tag}}">
         {{$value}}
