@@ -21,7 +21,6 @@
     </div>
     <!-- /.content-header -->
 
-
     <section class="content">
         <div class="container-fluid">
           <div class="row">
@@ -35,60 +34,9 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form method="post" action="">
-                @csrf
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">{{ trans('admin.Name') }}</label>
-                          <input type="text" value="{{ old('name') }}" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Name') }}" name="name">
-                          @error('name')
-                            <span style="color: red; margin: 20px;">
-                                {{ $message }}
-                            </span>
-                          @enderror
-                        </div>
-                      </div>
-  
-                      <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">{{ trans('admin.Description') }}</label>
-                            <input type="text" value="{{ old('description') }}" class="form-control" id="exampleInputEmail1" placeholder="{{ trans('admin.Description') }}" name="description">
-                            @error('description')
-                            <span style="color: red; margin: 20px;">
-                                {{ $message }}
-                            </span>
-                            @enderror
-                        </div>
-                      </div>
-                    </div>
-  
-                    <div class="row">
-                        @foreach (config('global.roles') as $key => $values)
-                            <div class="col-lg-3">
-                                <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{$key}}</h3>
-                                </div>
-                                
-                                <div class="card-body">
-                                    @foreach ($values as $value)
-                                        <div class="form-group clearfix">
-                                            <div class="icheck-success d-inline">
-                                                <input type="checkbox" id="{{$value . '-' . $key}}" name="permissions[]" value="{{$value . '-' . $key}}">
-                                                <label for="{{$value . '-' . $key}}">
-                                                {{$value}}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                              </div>
-                            </div>
-                        @endforeach
-                    </div>
-  
-                  </div>
+                  @csrf
+                  @include('admins.roles.form')
+
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary">{{ trans('admin.Add') }}</button>
                   </div>

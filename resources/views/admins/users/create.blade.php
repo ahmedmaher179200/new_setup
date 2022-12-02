@@ -50,61 +50,7 @@
                 <!-- form start -->
                 <form method="post" action="">
                     @csrf
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="username">{{ trans('admin.Username') }}</label>
-                                    <input type="text"  value="{{ old('username') }}" class="form-control" id="username" name="username">
-                                    @error('username')
-                                        <span style="color: red; margin: 20px;">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="name">{{ trans('admin.Name') }}</label>
-                                    <input type="text"  value="{{ old('name') }}" class="form-control" id="name" name="name">
-                                    @error('name')
-                                        <span style="color: red; margin: 20px;">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="password">{{ trans('admin.Password') }}</label>
-                                    <input type="password" class="form-control" id="password" name="password">
-                                    @error('password')
-                                        <span style="color: red; margin: 20px;">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label>{{ trans('admin.Roles') }}</label>
-                                    <select class="form-control select2" style="width: 100%;" name="role_id">
-                                        @foreach ($roles as $role)
-                                            <option value="{{$role->id}}">{{$role->name}}</option>
-                                        @endforeach>
-                                    </select>
-                                    @error('role_id')
-                                        <span style="color: red; margin: 20px;">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @include('admins.users.form')
                     <!-- /.card-body -->
 
                     <div class="card-footer">

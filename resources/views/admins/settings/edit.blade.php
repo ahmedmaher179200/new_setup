@@ -53,15 +53,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label>{{ trans('admin.Site name') }}</label>
-                                    <input type="text" class="form-control" name="site_name" value="{{$setting->site_name}}">
-                                    @error('site_name')
-                                        <span style="color: red; margin: 20px;">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
+                                <x-form.input type="text" class="form-control"
+                                    name="site_name" value="{{ $setting->site_name }}"
+                                    label="{{ trans('admin.Site name') }}" attribute="required"/>
                             </div>
 
                             <div class="col-lg-6">
