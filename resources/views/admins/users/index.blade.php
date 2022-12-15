@@ -30,7 +30,7 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-header">
-              @if (auth('user')->user()->isAbleTo('create-users'))
+              @if (auth('user')->user()->has_permission('create-users'))
                 <a href="{{url('dashboard/users/create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
               @else
                 <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
@@ -63,15 +63,15 @@
                                   <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                                   </button>
                                   <div class="dropdown-menu" role="menu">
-                                    @if (auth('user')->user()->isAbleTo('update-users'))
+                                    @if (auth('user')->user()->has_permission('update-users'))
                                       <a class="dropdown-item" href="{{url('dashboard/users/edit/' . $user->id)}}">{{ trans('admin.Edit') }}</a>
                                     @endif
 
-                                    @if (auth('user')->user()->isAbleTo('update-users'))
+                                    @if (auth('user')->user()->has_permission('update-users'))
                                       <a class="dropdown-item" href="{{url('dashboard/users/activity_logs/' . $user->id)}}">{{ trans('admin.Activity logs') }}</a>
                                     @endif
 
-                                    @if (auth('user')->user()->isAbleTo('delete-users'))
+                                    @if (auth('user')->user()->has_permission('delete-users'))
                                       <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-default-{{$user->id}}">{{ trans('admin.Delete') }}</a>
                                     @endif
                                   </div>

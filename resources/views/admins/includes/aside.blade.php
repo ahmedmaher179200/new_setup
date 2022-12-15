@@ -39,7 +39,7 @@
           </li>
 
           {{-- menu-open --}}
-          @if (auth('user')->user()->isAbleTo('read-users'))
+          @if (auth('user')->user()->has_permission('read-users'))
             <li class="nav-item {{(request()->is('*/dashboard/users') || request()->is('*/dashboard/users/*') || request()->is('*/dashboard/roles') || request()->is('*/dashboard/roles/*'))? 'menu-open':''}}">
               <a href="#" class="nav-link">
                 <i class="fas fa-user"></i>
@@ -66,7 +66,7 @@
             </li>
           @endif
           
-          @if (auth('user')->user()->super == 1)
+          @if (auth('user')->user()->has_permission('read-settings'))
             <li class="nav-item">
               <a href="{{url('dashboard/settings/edit')}}" class="nav-link {{request()->is('*/dashboard/settings/edit')? 'active':''}}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>

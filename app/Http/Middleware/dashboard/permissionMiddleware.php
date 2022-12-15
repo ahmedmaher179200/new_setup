@@ -16,11 +16,9 @@ class permissionMiddleware
      */
     public function handle(Request $request, Closure $next, $permission)
     {
-        if(auth('user')->user()->super == 1){ //is super
+        if(auth('user')->user()->has_permission($permission)){
             return $next($request);
-        } else if(auth('user')->user()->isAbleTo($permission)){ //has permission
-            return $next($request);
-        } else {  // dont has permission
+        } else {
             return abort(404);
         }
 

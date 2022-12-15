@@ -74,4 +74,14 @@ class User extends Authenticatable
     public function getCreatedAtAttribute(){
         return $this->date_format($this->attributes['created_at']);
     }
+
+    public function has_permission($permission){
+        if($this->super == 1)
+            return true;
+        
+        if($this->isAbleTo($permission))
+            return true;
+
+        return false;
+    }
 }

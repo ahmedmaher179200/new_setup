@@ -30,7 +30,7 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-header">
-              @if (auth('user')->user()->isAbleTo('create-roles'))
+              @if (auth('user')->user()->has_permission('create-roles'))
                 <a href="{{url('dashboard/roles/create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
               @else
                 <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
@@ -61,11 +61,11 @@
                                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                                     </button>
                                     <div class="dropdown-menu" role="menu">
-                                      @if (auth('user')->user()->isAbleTo('update-roles'))
+                                      @if (auth('user')->user()->has_permission('update-roles'))
                                         <a class="dropdown-item" href="{{url('dashboard/roles/edit/' . $role->id)}}">{{ trans('admin.Edit') }}</a>
                                       @endif
 
-                                      @if (auth('user')->user()->isAbleTo('delete-roles'))
+                                      @if (auth('user')->user()->has_permission('delete-roles'))
                                         <a class="dropdown-item" href="{{url('dashboard/roles/delete/' . $role->id)}}" data-toggle="modal" data-target="#modal-default-{{$role->id}}">{{ trans('admin.Delete') }}</a>
                                       @endif
                                     </div>
