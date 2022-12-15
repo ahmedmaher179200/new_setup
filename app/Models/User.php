@@ -36,9 +36,14 @@ class User extends Authenticatable
     ];
 
     //relations
-    public function image()
+    public function Image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function Activity_logs()
+    {
+        return $this->morphMany(Activity_log::class, 'causer');
     }
 
     //

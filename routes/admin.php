@@ -39,6 +39,7 @@ Route::group(
                     Route::get('/edit/{id}', 'App\Http\Controllers\Dashboard\UserController@edit');
                     Route::post('/edit/{id}', 'App\Http\Controllers\Dashboard\UserController@update');
                     Route::get('/destroy/{id}', 'App\Http\Controllers\Dashboard\UserController@destroy');
+                    Route::get('/activity_logs/{id}', 'App\Http\Controllers\Dashboard\UserController@activity_logs');
                 });
             
                 Route::group(['prefix' => 'roles'],function(){

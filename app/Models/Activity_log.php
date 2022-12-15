@@ -16,4 +16,19 @@ class Activity_log extends Model
         'id'            => 'integer',
         'properties'    => 'array',
     ];
+
+    //relations
+    public function subject()
+    {
+        return $this->morphTo();
+    }
+
+    public function causer()
+    {
+        return $this->morphTo();
+    }
+
+    public function getCreatedAtAttribute(){
+        return $this->date_format($this->attributes['created_at']);
+    }
 }

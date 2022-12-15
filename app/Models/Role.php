@@ -16,6 +16,12 @@ class Role extends LaratrustRole
 
     public $guarded = [];
 
+    //relations
+    public function Activity_logs()
+    {
+        return $this->morphMany(Activity_log::class, 'causer');
+    }
+
     public function getCreatedAtAttribute(){
         return $this->date_format($this->attributes['created_at']);
     }

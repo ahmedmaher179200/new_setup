@@ -17,7 +17,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Users') }}</li>
+                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/users')}}">{{ trans('admin.Users') }}</a> / {{ trans('admin.Activity logs') }}</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -28,70 +28,52 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-          <div class="card">
-            <div class="card-header">
-              @if (auth('user')->user()->isAbleTo('create-users'))
-                <a href="{{url('dashboard/users/create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
-              @else
-                <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
-              @endif
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th>{{ trans('admin.Username') }}</th>
-                  <th>{{ trans('admin.Name') }}</th>
-                  <th>{{ trans('admin.Role') }}</th>
-                  <th>{{ trans('admin.Created at') }}</th>
-                  <th>{{ trans('admin.Actions') }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
+            <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12">
+                <div class="card card-info card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                        {{ trans('admin.Activity logs') }}
+                        </h3>
+                    </div>
+
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                        <thead>
                         <tr>
-                            <td>{{$user->id}}</td>
-                            <td>{{$user->username}}</td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->getRole()}}</td>
-                            <td>{{$user->created_at}}</td>
-                            <td>
-                                <div class="btn-group">
-                                  <button type="button" class="btn btn-success">{{ trans('admin.Actions') }}</button>
-                                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                  </button>
-                                  <div class="dropdown-menu" role="menu">
-                                    @if (auth('user')->user()->isAbleTo('update-users'))
-                                      <a class="dropdown-item" href="{{url('dashboard/users/edit/' . $user->id)}}">{{ trans('admin.Edit') }}</a>
-                                    @endif
-
-                                    @if (auth('user')->user()->isAbleTo('update-users'))
-                                      <a class="dropdown-item" href="{{url('dashboard/users/activity_logs/' . $user->id)}}">{{ trans('admin.Activity logs') }}</a>
-                                    @endif
-
-                                    @if (auth('user')->user()->isAbleTo('delete-users'))
-                                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-default-{{$user->id}}">{{ trans('admin.Delete') }}</a>
-                                    @endif
-                                  </div>
-                                </div>
-
-                                @include('partials.delete_confirmation', [
-                                  'url' => url('dashboard/users/destroy/' . $user->id),
-                                  'modal_id'  => 'modal-default-' . $user->id,
-                                ])
-                            </td>
+                            <th>#</th>
+                            <th>{{ trans('admin.Created by') }}</th>
+                            <th>{{ trans('admin.Subject') }}</th>
+                            <th>{{ trans('admin.Action') }}</th>
+                            <th>{{ trans('admin.Created at') }}</th>
                         </tr>
-                    @endforeach
-                </tbody>
-              </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($user->Activity_logs as $log)
+                                <tr>
+                                    <td>{{$log->id}}</td>
+                                    <td>{{$log->causer->name}}</td>
+                                    <td>{{$log->subject_type}}</td>
+                                    <td>{{trans('admin.' . $log->description)}}</td>
+                                    <td>{{$user->created_at}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+
+                    </div>
             </div>
-            <!-- /.card-body -->
-          </div>
+            <!-- /.col -->
+            </div>
+            <!-- /.row -->
         </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
+    </section>
+    <!-- /.content -->
 @endsection
 
 @section('script')

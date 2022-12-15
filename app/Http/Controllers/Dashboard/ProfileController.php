@@ -4,12 +4,23 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\profile\edit;
+use App\Models\Activity_log;
 use App\Models\Image;
+use App\Services\ActivityLogsService;
+use App\Services\UsersService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+    protected $ActivityLogsService;
+    protected $UsersService;
+
+    public function __construct(UsersService $UsersService, ActivityLogsService $ActivityLogsService) {
+        $this->ActivityLogsService = $ActivityLogsService;
+        $this->UsersService = $UsersService;
+
+    }
     public function edit(){
         return view('admins.profile.show')->with([
             'user' => auth('user')->user(),
@@ -19,16 +30,16 @@ class ProfileController extends Controller
     public function update(edit $request){
         $user = auth('user')->user();
 
-        if($request->password == NULL){
-            $password = $user->password;
-        } else{
-            $password = Hash::make($request->password);
-        }
+        $this->UsersService->update($user, $request);
 
-        $user->username  = $request->username;
-        $user->name      = $request->name;
-        $user->password  = $password;
-        $user->save();
+        $this->ActivityLogsService->insert([
+            'subject_id'      => $user->id,
+            'subject_type'    => 'App\Models\User',
+            'description'     => 'update',
+            'causer_id'       => auth('user')->user()->id,
+            'causer_type'     => 'App\Models\User',
+            'properties'      => null,
+        ]);
 
         return redirect('dashboard/profile')->with('success', trans('admin.success'));
     }

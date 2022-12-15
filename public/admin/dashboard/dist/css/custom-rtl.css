@@ -76,6 +76,10 @@ div.dataTables_wrapper div.dataTables_filter input {
     margin-right: 0.5em;
 }
 
+.card-title {
+    float: right;
+}
+
 body,
     h1,
     h2,

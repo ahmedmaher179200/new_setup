@@ -15,6 +15,8 @@ class UsersService
         ]);
 
         $user->roles()->attach([$request->role_id]);
+
+        return $user;
     }
 
     public function update($user, $request){
@@ -29,7 +31,9 @@ class UsersService
         $user->password       = $password;
         $user->save();
 
-        $user->roles()->detach([$user->getRoleId()]);
-        $user->roles()->attach([$request->role_id]);
+        if($request->role_id){
+            $user->roles()->detach([$user->getRoleId()]);
+            $user->roles()->attach([$request->role_id]);
+        }
     }
 }

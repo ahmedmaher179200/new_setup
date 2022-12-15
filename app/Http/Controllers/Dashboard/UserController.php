@@ -7,6 +7,7 @@ use App\Http\Requests\users\createRequest;
 use App\Http\Requests\users\editRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\ActivityLogsService;
 use App\Services\UsersService;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
@@ -15,13 +16,15 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 class UserController extends Controller
 {
     protected $UsersService;
+    protected $ActivityLogsService;
 
-    public function __construct(UsersService $UsersService) {
+    public function __construct(UsersService $UsersService, ActivityLogsService $ActivityLogsService) {
         $this->UsersService = $UsersService;
+        $this->ActivityLogsService = $ActivityLogsService;
 
         $this->middleware('permissionMiddleware:read-users')->only('index');
         $this->middleware('permissionMiddleware:delete-users')->only('destroy');
-        $this->middleware('permissionMiddleware:update-users')->only(['edit', 'Update']);
+        $this->middleware('permissionMiddleware:update-users')->only(['edit', 'Update', 'activity_logs']);
         $this->middleware('permissionMiddleware:create-users')->only(['create', 'store']);
     }
 
@@ -36,7 +39,16 @@ class UserController extends Controller
     }
 
     public function store(createRequest $request){
-        $this->UsersService->insert($request);
+        $user = $this->UsersService->insert($request);
+
+        $this->ActivityLogsService->insert([
+            'subject_id'      => $user->id,
+            'subject_type'    => 'App\Models\User',
+            'description'     => 'create',
+            'causer_id'       => auth('user')->user()->id,
+            'causer_type'     => 'App\Models\User',
+            'properties'      => null,
+        ]);
 
         return redirect('dashboard/users')->with('success', 'success');
     }
@@ -59,6 +71,15 @@ class UserController extends Controller
 
         $this->UsersService->update($user, $request);
 
+        $this->ActivityLogsService->insert([
+            'subject_id'      => $id,
+            'subject_type'    => 'App\Models\User',
+            'description'     => 'update',
+            'causer_id'       => auth('user')->user()->id,
+            'causer_type'     => 'App\Models\User',
+            'properties'      => null,
+        ]);
+
         return redirect('dashboard/users')->with('success', 'success');
     }
 
@@ -70,6 +91,23 @@ class UserController extends Controller
         
         $user->delete();
 
+        $this->ActivityLogsService->insert([
+            'subject_id'      => $user_id,
+            'subject_type'    => 'App\Models\User',
+            'description'     => 'delete',
+            'causer_id'       => auth('user')->user()->id,
+            'causer_type'     => 'App\Models\User',
+            'properties'      => null,
+        ]);
+
         return redirect()->back()->with('success', trans('admin.success'));
+    }
+
+    public function activity_logs($id){
+        $user = User::findOrFail($id);
+
+        return view('admins.users.activity_logs')->with([
+            'user' => $user,
+        ]);
     }
 }

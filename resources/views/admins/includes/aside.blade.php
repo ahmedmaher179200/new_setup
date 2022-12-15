@@ -8,7 +8,7 @@
           <img src="{{auth('user')->user()->getImage()}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{auth('user')->user()->username}}</a>
+          <a href="#" class="d-block">{{auth('user')->user()->name}}</a>
         </div>
       </div>
 

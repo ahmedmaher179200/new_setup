@@ -16,6 +16,8 @@ class RolesService
 
         //add permissions to this role
         $role->attachPermissions($request->permissions);
+
+        return $role;
     }
 
     public function update($role, $request){
