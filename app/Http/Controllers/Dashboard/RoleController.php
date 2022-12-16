@@ -78,9 +78,6 @@ class RoleController extends Controller
         $role = Role::where('status', '!=', -1)
                         ->findOrFail($role_id);
 
-        if($role->id == Role::first()->id)
-            return redirect('dashboard/roles')->with('error', trans('admin.you can\'t delete this role'));
-        
         $role->delete();
 
         $this->ActivityLogsService->insert([

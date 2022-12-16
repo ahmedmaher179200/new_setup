@@ -29,7 +29,7 @@ class UserController extends Controller
     }
 
     public function index(){
-        $users = User::get();
+        $users = User::where('super', '!=', 1)->get();
         return view('admins.users.index')->with('users', $users);
     }
 
@@ -57,7 +57,7 @@ class UserController extends Controller
         $roles = Role::all();
         $user = User::findOrFail($id);
 
-        if($user->id == User::first()->id)
+        if($user->super == 1)
             return redirect('dashboard/users')->with('error', trans('admin.you can\'t update this user'));
         
         return view('admins.users.edit')->with([
@@ -86,7 +86,7 @@ class UserController extends Controller
     public function destroy($user_id){
         $user = User::findOrFail($user_id);
 
-        if($user->id == User::first()->id)
+        if($user->super == 1)
             return redirect('dashboard/users')->with('error', trans('admin.you can\'t delete this user'));
         
         $user->delete();
