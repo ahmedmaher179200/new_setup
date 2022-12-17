@@ -101,7 +101,7 @@ return [
     'no_result' => 'no result',
     'update'  => 'update',
     'create'  => 'create',
-    ''  => '',
+    'username or password is wrong'  => 'username or password is wrong',
     ''  => '',
     ''  => '',
     ''  => '',

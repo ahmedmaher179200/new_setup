@@ -16,11 +16,13 @@ class ProfileController extends Controller
     protected $ActivityLogsService;
     protected $UsersService;
 
-    public function __construct(UsersService $UsersService, ActivityLogsService $ActivityLogsService) {
+    public function __construct(UsersService $UsersService,
+                                ActivityLogsService $ActivityLogsService) {
+
         $this->ActivityLogsService = $ActivityLogsService;
         $this->UsersService = $UsersService;
-
     }
+
     public function edit(){
         return view('admins.profile.show')->with([
             'user' => auth('user')->user(),

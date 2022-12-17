@@ -19,7 +19,7 @@ class AuthenticationController extends Controller
         if (Auth::guard('user')->attempt($credentials))
             return redirect()->intended('/login');
 
-        return redirect()->back()->with('error', 'username or password is wrong' );
+        return redirect()->back()->with('error', trans('admin.username or password is wrong'));
     }
     
     public function logout(){
