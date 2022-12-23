@@ -24,8 +24,6 @@ class ProfileController extends Controller
     }
 
     public function edit(){
-        return $this->getPercentage(100,200);
-
         return view('admins.profile.show')->with([
             'user' => auth('user')->user(),
         ]);
