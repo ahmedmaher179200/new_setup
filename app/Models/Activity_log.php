@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity_log extends Model
 {
     use HasFactory;
+    use helper;
     protected $table = 'activity_log';
 
     public $guarded = [];

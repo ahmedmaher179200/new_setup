@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\profile\edit;
-use App\Models\Activity_log;
 use App\Models\Image;
 use App\Services\ActivityLogsService;
 use App\Services\UsersService;
+use App\Traits\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,6 +24,8 @@ class ProfileController extends Controller
     }
 
     public function edit(){
+        return $this->getPercentage(100,200);
+
         return view('admins.profile.show')->with([
             'user' => auth('user')->user(),
         ]);
@@ -49,28 +51,8 @@ class ProfileController extends Controller
     public function update_image(Request $request){
         $user = auth('user')->user();
 
-        if($request->hasfile('image')){
-            $path = $this->upload_image($request->file('image'), 'uploads/users');
-
-            if($user->Image == null){
-                //if user don't have image 
-                Image::create([
-                    'imageable_id'   => $user->id,
-                    'imageable_type' => 'App\Models\User',
-                    'src'            => $path,
-                ]);
-
-            } else {
-                $oldImage = $user->Image->src;
-
-                if(file_exists(base_path('public/uploads/users/') . $oldImage)){
-                    unlink(base_path('public/uploads/users/') . $oldImage);
-                }
-
-                $user->Image->src = $path;
-                $user->Image->save();
-            }
-        }
+        if($request->hasfile('image'))
+            $this->UsersService->update_user_image($user, $request->file('image'));
 
         return redirect('dashboard/profile')->with('success', trans('admin.success'));
     }
