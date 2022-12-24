@@ -11,8 +11,6 @@
 </div>
   <!-- ./wrapper -->
 
-  <!-- jQuery -->
-  <script src="{{ asset('public/admin/dashboard/plugins/jquery/jquery.min.js')}}"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="{{ asset('public/admin/dashboard/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -21,9 +19,6 @@
   </script>
   <!-- Bootstrap 4 -->
   <script src="{{ asset('public/admin/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-  <!-- Bootstrap 4 rtl -->
-  {{-- <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script> --}}
 
   <!-- ChartJS -->
   <script src="{{ asset('public/admin/dashboard/plugins/chart.js/Chart.min.js')}}"></script>
@@ -39,15 +34,7 @@
   <script src="{{ asset('public/admin/dashboard/plugins/daterangepicker/daterangepicker.js')}}"></script>
   <!-- Tempusdominus Bootstrap 4 -->
   <script src="{{ asset('public/admin/dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-  <!-- Summernote -->
-  <script src="{{ asset('public/admin/dashboard/plugins/summernote/summernote-bs4.min.js')}}"></script>
   <!-- overlayScrollbars -->
   <script src="{{ asset('public/admin/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-  {{-- <!-- AdminLTE App -->
-  <script src="{{ asset('public/admin/dashboard/dist/js/adminlte.js')}}"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="{{ asset('public/admin/dashboard/dist/js/demo.js')}}"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="{{ asset('public/admin/dashboard/dist/js/pages/dashboard.js')}}"></script> --}}
 </body>
 </html>

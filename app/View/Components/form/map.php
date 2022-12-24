@@ -4,25 +4,27 @@ namespace App\View\Components\form;
 
 use Illuminate\View\Component;
 
-class textarea extends Component
+class map extends Component
 {
-    public $name;
-    public $class;
-    public $value;
+
     public $label;
-    public $attribute;
+    public $latName;
+    public $longName;
+    public $latValue;
+    public $longValue;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($class, $name ="test", $value, $label, $attribute)
+    public function __construct($label,$latName, $longName,$latValue,$longValue)
     {
-        $this->name = $name;
-        $this->class = $class;
-        $this->value = $value;
         $this->label = $label;
-        $this->attribute = $attribute;
+        $this->latName = $latName;
+        $this->longName = $longName;
+        $this->latValue = $latValue;
+        $this->longValue = $longValue;
     }
 
     /**
@@ -32,6 +34,6 @@ class textarea extends Component
      */
     public function render()
     {
-        return view('components.form.textarea');
+        return view('components.form.map');
     }
 }

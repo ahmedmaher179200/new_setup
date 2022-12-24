@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\profile\edit;
-use App\Models\Image;
 use App\Services\ActivityLogsService;
 use App\Services\UsersService;
-use App\Traits\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 

@@ -24,8 +24,8 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/summernote/summernote-bs4.min.css')}}">
-
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <!-- Toastr -->
@@ -51,3 +51,9 @@
 <div class="preloader flex-column justify-content-center align-items-center">
   <img class="animation__shake" src="{{ asset('public/admin/dashboard/dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
 </div>
+
+
+<!-- jQuery -->
+<script src="{{ asset('public/admin/dashboard/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Summernote -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>

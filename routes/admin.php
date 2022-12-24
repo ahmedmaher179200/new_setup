@@ -26,6 +26,7 @@ Route::group(
         Route::group(['prefix' => 'dashboard'], function(){
             Route::get('/login', 'App\Http\Controllers\Dashboard\AuthenticationController@loginView')->name('adminlogin')->middleware('guest:user');
             Route::post('/login', 'App\Http\Controllers\Dashboard\AuthenticationController@login')->middleware('guest:user');
+            Route::post('/summernote_upload_image', 'App\Http\Controllers\Controller@summernote_upload_image')->name('summernote_upload_image');
         
             Route::group(['middleware' => 'auth:user'], function () {
                 Route::get('/', 'App\Http\Controllers\Dashboard\HomeController@index');
