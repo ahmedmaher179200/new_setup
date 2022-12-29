@@ -22,6 +22,6 @@ class Controller extends BaseController
             $path = $this->uploadImage($request->file('file'), 'uploads/images');
         }
 
-        return url('public/uploads/images/' . $path);
+        return url('uploads/images/' . $path);
     }
 }

@@ -49,9 +49,9 @@ class User extends Authenticatable
     //
     public function getImage(){
         if($this->Image != null){
-            return url('public/uploads/users/' . $this->Image->src);
+            return url('uploads/users/' . $this->Image->src);
         } else {
-            return url('public/uploads/users/default.jpg');
+            return url('uploads/users/default.jpg');
         }
     }
 

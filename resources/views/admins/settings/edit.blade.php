@@ -4,18 +4,18 @@
 
 @section('style')
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/dashboard/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
     <!-- Select2 -->
-    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/dashboard/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- Bootstrap4 Duallistbox -->
-    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/dashboard/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
     <!-- BS Stepper -->
-    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/bs-stepper/css/bs-stepper.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/dashboard/plugins/bs-stepper/css/bs-stepper.min.css')}}">
     <!-- dropzonejs -->
-    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/plugins/dropzone/min/dropzone.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/dashboard/plugins/dropzone/min/dropzone.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('public/admin/dashboard/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/dashboard/dist/css/adminlte.min.css')}}">
 @endsection
 
 @section('content')
@@ -106,19 +106,19 @@
 
 @section('script')
 <!-- Select2 -->
-<script src="{{ asset('public/admin/dashboard/plugins/select2/js/select2.full.min.js')}}"></script>
+<script src="{{ asset('admin/dashboard/plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="{{ asset('public/admin/dashboard/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
+<script src="{{ asset('admin/dashboard/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
 <!-- InputMask -->
-<script src="{{ asset('public/admin/dashboard/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
+<script src="{{ asset('admin/dashboard/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <!-- bootstrap color picker -->
-<script src="{{ asset('public/admin/dashboard/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+<script src="{{ asset('admin/dashboard/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
 <!-- Bootstrap Switch -->
-<script src="{{ asset('public/admin/dashboard/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+<script src="{{ asset('admin/dashboard/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <!-- BS-Stepper -->
-<script src="{{ asset('public/admin/dashboard/plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
+<script src="{{ asset('admin/dashboard/plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- dropzonejs -->
-<script src="{{ asset('public/admin/dashboard/plugins/dropzone/min/dropzone.min.js')}}"></script>
+<script src="{{ asset('admin/dashboard/plugins/dropzone/min/dropzone.min.js')}}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
