@@ -50,6 +50,37 @@
   <script src="{{asset('admin/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
   <script src="{{asset('admin/dashboard/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
   <script src="{{asset('admin/dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+  <script>
+      var table1 = $('#example1').DataTable({
+          "responsive": true, "lengthChange": true, "autoWidth": false,
+          "buttons": ["excel", "print", "colvis"],
+          "oLanguage": {
+              "sSearch": "{{__('admin.search')}} : ",
+              "sLoadingRecords": "{{__('admin.loading')}}",
+              "sInfoEmpty": "{{__('admin.no_result')}}",
+              "sEmptyTable": "{{__('admin.no_result')}}"
+          },
+
+          'buttons': [
+              {
+                  extend: 'excel', text: '{{__('admin.excel')}}'
+              },
+              {
+                  extend: 'print', text: '{{__('admin.print')}}'
+              },
+              {
+                  extend: 'colvis', text: '{{__('admin.column_visibility')}}'
+              },
+          ],
+          "language": {
+              "paginate": {
+                  "previous": "{{__('admin.previous')}}",
+                  "next": "{{__('admin.next')}}",
+              }
+          },
+  });
+  </script>
   <!--end data table-->
 
   <!-- Select2 -->

@@ -92,46 +92,24 @@
 
 @section('script')
 <script>
-  $(function () {
+  // $.fn.dataTable.ext.search.push(
+  //     function( settings, data, dataIndex ) {
+  //       //id filter
+  //       var id = $('#id').val();
+  //       if(data[0] === id || id == ''){ var id_status = true } else { var id_status = false};
 
-  $("#example1").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": false,
-      "buttons": ["excel", "print", "colvis"],
-      "oLanguage": {
-          "sSearch": "{{__('admin.search')}} : ",
-          "sLoadingRecords": "{{__('admin.loading')}}",
-          "sInfo": "{{__('admin.Showing')}} _START_ {{__('admin.to')}} _END_ {{__('admin.of')}} _TOTAL_ {{__('admin.entries')}}",
-          "sInfoEmpty": "{{__('admin.no_result')}}",
-          "sEmptyTable": "{{__('admin.no_result')}}"
-      },
+  //       if(id_status)
+  //         return true;
 
-      'buttons': [
-          {
-              extend: 'excel', text: '{{__('admin.excel')}}'
-          },
-          {
-              extend: 'print', text: '{{__('admin.print')}}'
-          },
-          {
-              extend: 'colvis', text: '{{__('admin.column_visibility')}}'
-          },
-      ],
-      "language": {
-          "paginate": {
-              "previous": "{{__('admin.previous')}}",
-              "next": "{{__('admin.next')}}",
-          }
-      }
-  }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-  });
-});
+  //       return false;
+  //     }
+  // );
+
+  // $(document).ready(function () {
+  //     // filter
+  //     $('#id').on('change', function () {
+  //       table1.draw().buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  //     });
+  // });
 </script>
 @endsection
