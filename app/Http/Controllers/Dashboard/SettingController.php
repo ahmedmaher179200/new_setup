@@ -22,6 +22,11 @@ class SettingController extends Controller
         $setting->time_zone = $request->time_zone;
         $setting->save();
 
+        //update sessaions
+        session(['site_name'    => $setting->site_name]);
+        session(['date_format'  => $setting->date_format]);
+        session(['time_zone'    => $setting->time_zone]);
+
         return redirect('dashboard/settings/edit')->with('success', 'success');
     }
 }

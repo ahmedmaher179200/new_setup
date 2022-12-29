@@ -1,6 +1,6 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer" style="text-align: center">
-    <strong>Copyright &copy; Taahied All rights reserved.</strong>
+    <strong>Copyright &copy; {{getSiteName()}} All rights reserved.</strong>
   </footer>
 
   <!-- Control Sidebar -->
