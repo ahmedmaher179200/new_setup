@@ -20,19 +20,19 @@ function getSiteName(){
 }
 
 function getDateFormat(){
-    if(!session('time_zone')){
-        $setting = Setting::first();
-        session(['time_zone' => $setting->time_zone]);
-    }
-
-    return session('time_zone');
-}
-
-function getTimeZone(){
     if(!session('date_format')){
         $setting = Setting::first();
         session(['date_format' => $setting->date_format]);
     }
 
     return session('date_format');
+}
+
+function getTimeZone(){
+    if(!session('time_zone')){
+        $setting = Setting::first();
+        session(['time_zone' => $setting->time_zone]);
+    }
+
+    return session('time_zone');
 }
