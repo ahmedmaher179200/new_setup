@@ -8,6 +8,6 @@ return [
         'roles' => ['read', 'create', 'update', 'delete'],
     ],
 
-    'app-name' => 'Name',
+    'app-name' => 'aahmed',
 ]
 ?>
