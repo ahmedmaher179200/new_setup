@@ -104,7 +104,7 @@ return [
     'username or password is wrong'  => 'username or password is wrong',
     'Latitude'  => 'Latitude',
     'Longitude'  => 'Longitude',
-    ''  => '',
+    'filter'  => 'Filter',
     ''  => '',
     ''  => '',
     ''  => '',

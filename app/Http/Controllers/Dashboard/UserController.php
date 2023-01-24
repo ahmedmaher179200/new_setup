@@ -30,7 +30,12 @@ class UserController extends Controller
 
     public function index(){
         $users = User::where('super', '!=', 1)->get();
-        return view('admins.users.index')->with('users', $users);
+        $roles = Role::get();
+
+        return view('admins.users.index')->with([
+            'users'=> $users,
+            'roles' => $roles,
+        ]);
     }
 
     public function create(){

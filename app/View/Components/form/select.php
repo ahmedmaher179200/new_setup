@@ -11,6 +11,8 @@ class select extends Component
     public $class;
     public $value;
     public $label;
+    public $id;
+    public $select;
 
 
     /**
@@ -18,13 +20,15 @@ class select extends Component
      *
      * @return void
      */
-    public function __construct($collection, $name, $class, $value, $label)
+    public function __construct($collection, $name, $class, $value, $label, $id, $select)
     {
         $this->collection = $collection;
         $this->name = $name;
         $this->class = $class;
         $this->value = $value;
         $this->label = $label;
+        $this->id = $id;
+        $this->select = $select;
     }
 
     /**
