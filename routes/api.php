@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'users'], function(){
+    Route::post('login', 'App\Http\Controllers\Api\user\authentication\LoginController@login');
+    // Route::post('register', 'App\Http\Controllers\site\student\authentication\auth@register');
+
+    Route::group(['middleware' => 'checkJWTTokenMiddelware:user_api'], function(){
+        Route::post('logout', 'App\Http\Controllers\Api\user\authentication\LoginController@logout');
+    });
 });

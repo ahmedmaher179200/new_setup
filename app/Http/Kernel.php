@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
 
         'permissionMiddleware'      => Middleware\dashboard\permissionMiddleware::class,
+        'checkJWTTokenMiddelware'      => Middleware\checkJWTTokenMiddelware::class,
     ];
 }
