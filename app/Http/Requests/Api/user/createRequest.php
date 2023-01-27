@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class loginRequest extends FormRequest
+class createRequest extends FormRequest
 {
     use response;
     /**
@@ -28,8 +28,10 @@ class loginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'          => 'required|string',
-            'password'          => 'required|string',
+            'username'          => 'required|string|unique:users',
+            'name'              => 'required|string',
+            'password'          => 'required|string|min:6',
+            'confirm_password'  => 'required|string|same:password',
         ];
     }
 

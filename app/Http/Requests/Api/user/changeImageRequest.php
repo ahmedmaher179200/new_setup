@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class loginRequest extends FormRequest
+class changeImageRequest extends FormRequest
 {
     use response;
     /**
@@ -28,11 +28,11 @@ class loginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'          => 'required|string',
-            'password'          => 'required|string',
+            'image'       => 'required|mimes:jpeg,jpg,png,gif',
         ];
     }
 
+    
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException($this->failed($validator->errors()->first(), 403, 'E03'));

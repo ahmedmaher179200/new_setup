@@ -30,6 +30,7 @@ Route::group(
         
             Route::group(['middleware' => 'auth:user'], function () {
                 Route::get('/', 'App\Http\Controllers\Dashboard\HomeController@index');
+                
                 Route::get('/logout', 'App\Http\Controllers\Dashboard\AuthenticationController@logout');
         
                 Route::group(['prefix' => 'users'],function(){
