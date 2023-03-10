@@ -12,7 +12,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class registrationController extends Controller
 {
-    use response;
     public function register(createRequest $request){
         $user = User::create([
             'username'          => $request->username,

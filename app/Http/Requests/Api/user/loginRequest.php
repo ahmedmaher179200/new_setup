@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\user;
 
+use App\Traits\requestApiTrait;
 use App\Traits\response;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
@@ -9,7 +10,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class loginRequest extends FormRequest
 {
-    use response;
+    use requestApiTrait;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -31,10 +32,5 @@ class loginRequest extends FormRequest
             'username'          => 'required|string',
             'password'          => 'required|string',
         ];
-    }
-
-    public function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException($this->failed($validator->errors()->first(), 403, 'E03'));
     }
 }

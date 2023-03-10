@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\response;
 use App\Traits\Upload;
 use Exception;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -15,6 +16,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     use Upload;
+    use response;
 
     public function summernote_upload_image(Request $request){
         $path = null;

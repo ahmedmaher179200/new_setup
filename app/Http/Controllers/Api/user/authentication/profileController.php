@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Hash;
 
 class profileController extends Controller
 {
-    use response, Upload;
+    use Upload;
     public function show(){
         $user = auth('user_api')->user();
 

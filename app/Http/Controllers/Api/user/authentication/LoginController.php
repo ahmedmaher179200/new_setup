@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    use response;
     public function login(loginRequest $request){
         $credentials = ['username' => $request->username, 'password' => $request->password];
         
