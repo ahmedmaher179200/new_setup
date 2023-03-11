@@ -54,6 +54,16 @@ Route::group(
                     Route::get('/destroy/{id}', 'App\Http\Controllers\Dashboard\RoleController@destroy');
                 });
 
+                Route::group(['prefix' => 'categories'],function(){
+                    Route::get('/', 'App\Http\Controllers\Dashboard\CategoryController@index');
+                    Route::get('/delete/{id}', 'App\Http\Controllers\Dashboard\CategoryController@delete');
+                    Route::get('/create', 'App\Http\Controllers\Dashboard\CategoryController@create');
+                    Route::post('/create', 'App\Http\Controllers\Dashboard\CategoryController@store');
+                    Route::get('/edit/{id}', 'App\Http\Controllers\Dashboard\CategoryController@edit');
+                    Route::post('/edit/{id}', 'App\Http\Controllers\Dashboard\CategoryController@update');
+                    Route::get('/destroy/{id}', 'App\Http\Controllers\Dashboard\CategoryController@destroy');
+                });
+
                 Route::group(['prefix' => 'settings'],function(){
                     Route::get('/edit', 'App\Http\Controllers\Dashboard\SettingController@edit');
                     Route::post('/edit', 'App\Http\Controllers\Dashboard\SettingController@update');

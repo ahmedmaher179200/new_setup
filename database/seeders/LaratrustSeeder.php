@@ -16,7 +16,7 @@ class LaratrustSeeder extends Seeder
     public function run()
     {
         //role seeder
-        $role = Role::create([
+        $role = Role::firstOrCreate([
             'name'          => 'الادارة',
             'display_name'  => 'الادارة',
             'description'   => 'can do any thing',
@@ -24,7 +24,7 @@ class LaratrustSeeder extends Seeder
 
         foreach(config('global.roles') as $key => $values){
             foreach($values as $value){
-                $sub_role = Permission::create([
+                $sub_role = Permission::firstOrCreate([
                     'name'          => $value . '-' . $key,
                     'display_name'  => $value . ' ' . $key,
                     'description'   => $value . ' ' . $key,

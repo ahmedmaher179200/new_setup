@@ -65,6 +65,17 @@
               </ul>
             </li>
           @endif
+
+          @if (auth('user')->user()->has_permission('read-categories'))
+            <li class="nav-item">
+              <a href="{{url('dashboard/categories')}}" class="nav-link {{request()->is('*/dashboard/categories') ||  request()->is('*/dashboard/categories/*')? 'active':''}}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  {{ trans('admin.Categories') }}
+                </p>
+              </a>
+            </li>
+          @endif
           
           @if (auth('user')->user()->has_permission('read-settings'))
             <li class="nav-item">

@@ -14,7 +14,7 @@ class userSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
+        $user = User::firstOrCreate([
             'username'  => 'ahmed1',
             'name'  => 'ahmed maher',
             'super' => 1,

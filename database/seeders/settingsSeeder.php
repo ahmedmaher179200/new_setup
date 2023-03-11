@@ -14,7 +14,7 @@ class settingsSeeder extends Seeder
      */
     public function run()
     {
-        $role = Setting::create([
+        $role = Setting::firstOrCreate([
             'logo'          => 'logo.jpg',
             'site_name'          => 'Name',
             'date_format'   => 'Y-m-d',
