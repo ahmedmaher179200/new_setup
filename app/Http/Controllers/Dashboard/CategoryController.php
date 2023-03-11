@@ -11,18 +11,14 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     public function index(){
-        // with(['city.companies.persons' => function ($query) {
-        //     $query->select('id', '...');
-        // }])->get()
-        return Category::with('Childrens.Childrens')->find(1);
-        $categories = Category::get();
+        $categories = Category::tree()->get();
         return view('admins.categories.index')->with([
             'categories'    => $categories,
         ]);
     }
 
     public function create(){
-        $categories = Category::get();
+        $categories = Category::tree(0)->get();
 
         return view('admins.categories.create')->with([
             'categories'    => $categories,
@@ -55,7 +51,7 @@ class CategoryController extends Controller
     }
 
     public function edit($id){
-        $categories = Category::get();
+        $categories = Category::tree(0)->get();
         $data = Category::findOrFail($id);
 
         return view('admins.categories.edit')->with([

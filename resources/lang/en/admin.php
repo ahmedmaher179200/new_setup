@@ -109,7 +109,7 @@ return [
     'Select'  => 'Select',
     'Parent'  => 'Parent',
     'Category'  => 'Category',
-    ''  => '',
+    'Path'  => 'Path',
     ''  => '',
     ''  => '',
     ''  => '',

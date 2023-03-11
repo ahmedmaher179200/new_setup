@@ -8,29 +8,32 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Category extends Model implements TranslatableContract
 {
     use HasFactory, Translatable, SoftDeletes;
+    use HasRecursiveRelationships;
     protected $table = 'categories';
     public $translatedAttributes = ['name'];
     protected $guarded = [];
 
-    //relation
-    public function Childrens()
+    public function getParentKeyName()
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return 'parent_id';
     }
 
-    public function Parent()
+    public function getLocalKeyName()
     {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return 'id';
     }
 
-    public function getParent(){
-        if($this->Parent)
-            return $this->Parent->translate(LaravelLocalization::getCurrentLocale())->name;
+    public function getPath(){
+        $cats = $this->ancestors()->orderBy('depth', 'ASC')->get();
+        $path = '';
+        foreach($cats as $cat){
+            $path .= '/' . $cat->translate(LaravelLocalization::getCurrentLocale())->name;
+        }
 
-        return '-';
+        return $path;
     }
 }

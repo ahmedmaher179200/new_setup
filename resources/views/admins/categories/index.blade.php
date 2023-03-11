@@ -38,8 +38,8 @@
               <thead>
               <tr>
                 <th>#</th>
+                <th>{{ trans('admin.Path') }}</th>
                 <th>{{ trans('admin.Name') }}</th>
-                <th>{{ trans('admin.Parent') }}</th>
                 <th>{{ trans('admin.Created at') }}</th>
                 <th>{{ trans('admin.Actions') }}</th>
               </tr>
@@ -48,8 +48,8 @@
                   @foreach ($categories as $category)
                       <tr>
                           <td>{{$category->id}}</td>
+                          <td>{{$category->getPath()}}</td>
                           <td>{{$category->translate(LaravelLocalization::getCurrentLocale())->name}}</td>
-                          <td>{{$category->getParent()}}</td>
                           <td>{{$category->created_at}}</td>
                           <td>
                               <div class="btn-group">

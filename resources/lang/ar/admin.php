@@ -99,5 +99,6 @@ return [
     'Categories'  => 'الأقسام',
     'Select'  => 'اختر',
     'Parent'    => 'الأب',
-    'Category'  => 'القسم'
+    'Category'  => 'القسم',
+    'Path'  => 'المسار'
 ];
