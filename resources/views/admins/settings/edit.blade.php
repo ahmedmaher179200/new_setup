@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <x-form.input type="text" class="form-control"
-                                    name="site_name" value="{{ $setting->site_name }}"
+                                    name="site_name" value="{{ $data->site_name }}"
                                     label="{{ trans('admin.Site name') }}" attribute="required"/>
                             </div>
 
@@ -47,7 +47,7 @@
                                     <label>{{ trans('admin.Time zones') }}</label>
                                     <select class="form-control select2" style="width: 100%;" name="time_zone">
                                         @foreach (config('time_zones.blade') as $time_zone)
-                                            <option value="{{$time_zone['name']}}" @if ($setting->time_zone == $time_zone['name']) selected @endif>{{$time_zone['name']}}</option>
+                                            <option value="{{$time_zone['name']}}" @if ($data->time_zone == $time_zone['name']) selected @endif>{{$time_zone['name']}}</option>
                                         @endforeach>
                                     </select>
                                     @error('time_zone')
@@ -63,7 +63,7 @@
                                     <label>{{ trans('admin.Date format') }}</label>
                                     <select class="form-control select2" style="width: 100%;" name="date_format">
                                         @foreach (config('date_formats.blade') as $date_format)
-                                            <option value="{{$date_format['format']}}" @if ($setting->date_format == $date_format['format']) selected @endif>{{date($date_format['format'])}}</option>
+                                            <option value="{{$date_format['format']}}" @if ($data->date_format == $date_format['format']) selected @endif>{{date($date_format['format'])}}</option>
                                         @endforeach>
                                     </select>
                                     @error('date_formats')

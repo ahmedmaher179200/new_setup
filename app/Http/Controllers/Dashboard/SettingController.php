@@ -11,7 +11,7 @@ class SettingController extends Controller
     public function edit(){
         $setting = Setting::first();
 
-        return view('admins.settings.edit')->with('setting', $setting);
+        return view('admins.settings.edit')->with('data', $setting);
     }
 
     public function update(Request $request){

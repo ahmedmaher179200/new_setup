@@ -54,7 +54,7 @@ class RoleController extends Controller
     public function edit($role_id){
         $role = Role::findOrFail($role_id);
 
-        return view('admins.roles.edit')->with('role', $role);
+        return view('admins.roles.edit')->with('data', $role);
     }
 
     public function update($role_id, editRequest $request){

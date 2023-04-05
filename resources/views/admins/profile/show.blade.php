@@ -29,9 +29,9 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle profile-image preview"
-                          src="{{$user->getImage()}}"
+                          src="{{$data->getImage()}}"
                           alt="User profile picture" id="page-img" style="width: 200px;">
-                    {{-- <h3 class="profile-username text-center">{{$user->name}}</h3>   --}}
+                    {{-- <h3 class="profile-username text-center">{{$data->name}}</h3>   --}}
                     <br>
                     <br>
 
@@ -60,43 +60,23 @@
                       <form action="" method="post" enctype="multipart/form-data">
                           @csrf
                           <div class="row" style="margin: 0 !important;">
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                  <label>{{ trans('admin.username') }}</label>
-                                  <input class="form-control"
-                                      value="{{ $user->username}}" name="username">
-                                    @error('username')
-                                      <small class=" text text-danger" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </small>
-                                    @enderror
-                              </div>
+                          <div class="col-lg-6">
+                              <x-form.input type="text" class="form-control" attribute="required"
+                                  name="username" value="{{ isset($data) ? $data->username : old('username') }}"
+                                  label="{{ trans('admin.Username') }}" />
                           </div>
 
-                          <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ trans('admin.Name') }}</label>
-                                <input class="form-control"
-                                    value="{{ $user->name}}" name="name">
-                                  @error('name')
-                                    <small class=" text text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </small>
-                                  @enderror
-                            </div>
+
+                          <div class="col-lg-6">
+                              <x-form.input type="text" class="form-control" attribute="required"
+                                  name="name" value="{{ isset($data) ? $data->name : old('name') }}"
+                                  label="{{ trans('admin.Name') }}" />
                           </div>
 
-                          <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ trans('admin.Password') }}</label>
-                                <input class="form-control"
-                                    name="password">
-                                  @error('password')
-                                    <small class=" text text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </small>
-                                  @enderror
-                            </div>
+                          <div class="col-lg-6">
+                              <x-form.input type="password" class="form-control" attribute="{{ isset($data) ? '' : 'required' }}"
+                                  name="password" value="{{ old('password') }}"
+                                  label="{{ trans('admin.Password') }}"/>
                           </div>
 
                           <div class="col-md-12">
@@ -141,13 +121,13 @@
                       </tr>
                       </thead>
                       <tbody>
-                          @foreach ($user->Activity_logs as $log)
+                          @foreach ($data->Activity_logs as $log)
                               <tr>
                                   <td>{{$log->id}}</td>
                                   <td>{{$log->causer->name}}</td>
                                   <td>{{$log->subject_type}}</td>
                                   <td>{{trans('admin.' . $log->description)}}</td>
-                                  <td>{{$user->created_at}}</td>
+                                  <td>{{$log->created_at}}</td>
                               </tr>
                           @endforeach
                       </tbody>

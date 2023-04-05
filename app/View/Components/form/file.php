@@ -6,14 +6,21 @@ use Illuminate\View\Component;
 
 class file extends Component
 {
+    public $name;
+    public $class;
+    public $label;
+    public $attribute;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($class, $name,$label, $attribute)
     {
-        //
+        $this->name = $name;
+        $this->class = $class;
+        $this->label = $label;
+        $this->attribute = $attribute;
     }
 
     /**

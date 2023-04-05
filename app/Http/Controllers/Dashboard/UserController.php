@@ -67,7 +67,7 @@ class UserController extends Controller
         
         return view('admins.users.edit')->with([
             'roles' => $roles,
-            'user' => $user,
+            'data' => $user,
         ]);
     }
 

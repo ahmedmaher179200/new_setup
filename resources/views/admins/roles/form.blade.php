@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-lg-6">
                 <x-form.input type="text" class="form-control" attribute="required"
-                    name="name" value="{{ isset($role) ? $role->name : old('name') }}"
+                    name="name" value="{{ isset($data) ? $data->name : old('name') }}"
                     label="{{ trans('admin.Name') }}" />
         </div>
 
         <div class="col-lg-6">
                 <x-form.input type="text" class="form-control" attribute="required"
-                    name="description" value="{{ isset($role) ? $role->description : old('description') }}"
+                    name="description" value="{{ isset($data) ? $data->description : old('description') }}"
                     label="{{ trans('admin.Description') }}"/>
         </div>
     </div>
@@ -25,7 +25,7 @@
                         @foreach ($values as $value)
                             <x-form.checkbox class="form-control" label="{{$value}}" tag="{{$value . '-' . $key}}"
                                 value="{{$value . '-' . $key}}"  name="permissions[]"
-                                attribute="{{ isset($role) ? $role->hasPermission($value . '-' . $key) ? 'checked' : '' : '' }}"/>
+                                attribute="{{ isset($data) ? $data->hasPermission($value . '-' . $key) ? 'checked' : '' : '' }}"/>
                         @endforeach
                         
                     </div>

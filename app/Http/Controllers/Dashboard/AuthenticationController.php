@@ -17,7 +17,7 @@ class AuthenticationController extends Controller
         $credentials = ['username' => $Request->username, 'password' => $Request->password];
 
         if (Auth::guard('user')->attempt($credentials))
-            return redirect()->intended('/login');
+            return redirect()->intended('dashboard/login');
 
         return redirect('dashboard')->with('error', trans('admin.username or password is wrong'));
     }
