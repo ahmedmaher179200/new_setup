@@ -15,23 +15,23 @@ class LaratrustSeeder extends Seeder
      */
     public function run()
     {
-        //role seeder
-        $role = Role::firstOrCreate([
-            'name'          => 'الادارة',
-            'display_name'  => 'الادارة',
-            'description'   => 'can do any thing',
-        ]);
+        // //role seeder
+        // $role = Role::firstOrCreate([
+        //     'name'          => 'الادارة',
+        //     'display_name'  => 'الادارة',
+        //     'description'   => 'can do any thing',
+        // ]);
 
-        foreach(config('global.roles') as $key => $values){
-            foreach($values as $value){
-                $sub_role = Permission::firstOrCreate([
-                    'name'          => $value . '-' . $key,
-                    'display_name'  => $value . ' ' . $key,
-                    'description'   => $value . ' ' . $key,
-                ]);
+        // foreach(config('global.roles') as $key => $values){
+        //     foreach($values as $value){
+        //         $sub_role = Permission::firstOrCreate([
+        //             'name'          => $value . '-' . $key,
+        //             'display_name'  => $value . ' ' . $key,
+        //             'description'   => $value . ' ' . $key,
+        //         ]);
                 
-                $role->attachPermissions([$sub_role]);
-            }
-        }
+        //         $role->attachPermissions([$sub_role]);
+        //     }
+        // }
     }
 }

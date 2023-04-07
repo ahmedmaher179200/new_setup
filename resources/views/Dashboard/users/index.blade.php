@@ -64,11 +64,11 @@
                                 </button>
                                 <div class="dropdown-menu" role="menu">
                                   @if (auth('user')->user()->has_permission('update-users'))
-                                    <a class="dropdown-item" href="{{url('dashboard/users/edit/' . $user->id)}}">{{ trans('admin.Edit') }}</a>
+                                    <a class="dropdown-item" href="{{url('dashboard/users/' . $user->id . '/edit')}}">{{ trans('admin.Edit') }}</a>
                                   @endif
 
                                   @if (auth('user')->user()->has_permission('update-users'))
-                                    <a class="dropdown-item" href="{{url('dashboard/users/activity_logs/' . $user->id)}}">{{ trans('admin.Activity logs') }}</a>
+                                    <a class="dropdown-item" href="{{url('dashboard/users/' . $user->id . '/activity-logs')}}">{{ trans('admin.Activity logs') }}</a>
                                   @endif
 
                                   @if (auth('user')->user()->has_permission('delete-users'))
@@ -78,7 +78,7 @@
                               </div>
 
                               @include('partials.delete_confirmation', [
-                                'url' => url('dashboard/users/destroy/' . $user->id),
+                                'url' => url('dashboard/users/' . $user->id . '/destroy'),
                                 'modal_id'  => 'modal-default-' . $user->id,
                               ])
                           </td>

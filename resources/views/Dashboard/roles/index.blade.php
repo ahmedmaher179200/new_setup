@@ -58,16 +58,16 @@
                                     </button>
                                     <div class="dropdown-menu" role="menu">
                                       @if (auth('user')->user()->has_permission('update-roles'))
-                                        <a class="dropdown-item" href="{{url('dashboard/roles/edit/' . $role->id)}}">{{ trans('admin.Edit') }}</a>
+                                        <a class="dropdown-item" href="{{url('dashboard/roles/' . $role->id .'/edit')}}">{{ trans('admin.Edit') }}</a>
                                       @endif
 
                                       @if (auth('user')->user()->has_permission('delete-roles'))
-                                        <a class="dropdown-item" href="{{url('dashboard/roles/delete/' . $role->id)}}" data-toggle="modal" data-target="#modal-default-{{$role->id}}">{{ trans('admin.Delete') }}</a>
+                                        <a class="dropdown-item" href="{{url('dashboard/roles/' . $role->id .'/delete')}}" data-toggle="modal" data-target="#modal-default-{{$role->id}}">{{ trans('admin.Delete') }}</a>
                                       @endif
                                     </div>
                                   </div>
                                   @include('partials.delete_confirmation', [
-                                    'url' => url('dashboard/roles/destroy/' . $role->id),
+                                    'url' => url('dashboard/roles/' . $role->id .'/destroy'),
                                     'modal_id'  => 'modal-default-' . $role->id,
                                   ])
                             </td>

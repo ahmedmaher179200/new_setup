@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\dashboard\AuthenticationController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\SettingController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -24,54 +32,51 @@ Route::group(
     ], function(){
 
         Route::group(['prefix' => 'dashboard'], function(){
-            Route::get('/login', 'App\Http\Controllers\Dashboard\AuthenticationController@loginView')->name('adminlogin')->middleware('guest:user');
-            Route::post('/login', 'App\Http\Controllers\Dashboard\AuthenticationController@login')->middleware('guest:user');
-            Route::post('/summernote_upload_image', 'App\Http\Controllers\Controller@summernote_upload_image')->name('summernote_upload_image');
+            Route::get('/login', [AuthenticationController::class, 'loginView'])->name('adminlogin')->middleware('guest:user');
+            Route::post('/login', [AuthenticationController::class, 'login'])->middleware('guest:user');
+
+            Route::post('/summernote_upload_image', [Controller::class, 'summernote_upload_image'])->name('summernote_upload_image');
         
             Route::group(['middleware' => 'auth:user'], function () {
-                Route::get('/', 'App\Http\Controllers\Dashboard\HomeController@index');
-                
-                Route::get('/logout', 'App\Http\Controllers\Dashboard\AuthenticationController@logout');
+                Route::get('/', [HomeController::class, 'index']);
+                Route::get('/logout', [AuthenticationController::class, 'logout']);
         
                 Route::group(['prefix' => 'users'],function(){
-                    Route::get('/', 'App\Http\Controllers\Dashboard\UserController@index');
-                    Route::get('/delete/{id}', 'App\Http\Controllers\Dashboard\UserController@delete');
-                    Route::get('/create', 'App\Http\Controllers\Dashboard\UserController@create');
-                    Route::post('/create', 'App\Http\Controllers\Dashboard\UserController@store');
-                    Route::get('/edit/{id}', 'App\Http\Controllers\Dashboard\UserController@edit');
-                    Route::post('/edit/{id}', 'App\Http\Controllers\Dashboard\UserController@update');
-                    Route::get('/destroy/{id}', 'App\Http\Controllers\Dashboard\UserController@destroy');
-                    Route::get('/activity_logs/{id}', 'App\Http\Controllers\Dashboard\UserController@activity_logs');
+                    Route::get('/', [UserController::class, 'index']);
+                    Route::get('/create', [UserController::class, 'create']);
+                    Route::post('/create', [UserController::class, 'store']);
+                    Route::get('{id}/edit', [UserController::class, 'edit']);
+                    Route::post('{id}/edit', [UserController::class, 'update']);
+                    Route::get('{id}/destroy', [UserController::class, 'destroy']);
+                    Route::get('{id}/activity-logs', [UserController::class, 'activity_logs']);
                 });
             
                 Route::group(['prefix' => 'roles'],function(){
-                    Route::get('/', 'App\Http\Controllers\Dashboard\RoleController@index');
-                    Route::get('/delete/{id}', 'App\Http\Controllers\Dashboard\RoleController@delete');
-                    Route::get('/create', 'App\Http\Controllers\Dashboard\RoleController@create');
-                    Route::post('/create', 'App\Http\Controllers\Dashboard\RoleController@store');
-                    Route::get('/edit/{id}', 'App\Http\Controllers\Dashboard\RoleController@edit');
-                    Route::post('/edit/{id}', 'App\Http\Controllers\Dashboard\RoleController@update');
-                    Route::get('/destroy/{id}', 'App\Http\Controllers\Dashboard\RoleController@destroy');
+                    Route::get('/', [RoleController::class, 'index']);
+                    Route::get('/create', [RoleController::class, 'create']);
+                    Route::post('/create', [RoleController::class, 'store']);
+                    Route::get('{id}/edit', [RoleController::class, 'edit']);
+                    Route::post('{id}/edit', [RoleController::class, 'update']);
+                    Route::get('{id}/destroy', [RoleController::class, 'destroy']);
                 });
 
                 Route::group(['prefix' => 'categories'],function(){
-                    Route::get('/', 'App\Http\Controllers\Dashboard\CategoryController@index');
-                    Route::get('/delete/{id}', 'App\Http\Controllers\Dashboard\CategoryController@delete');
-                    Route::get('/create', 'App\Http\Controllers\Dashboard\CategoryController@create');
-                    Route::post('/create', 'App\Http\Controllers\Dashboard\CategoryController@store');
-                    Route::get('/edit/{id}', 'App\Http\Controllers\Dashboard\CategoryController@edit');
-                    Route::post('/edit/{id}', 'App\Http\Controllers\Dashboard\CategoryController@update');
-                    Route::get('/destroy/{id}', 'App\Http\Controllers\Dashboard\CategoryController@destroy');
+                    Route::get('/', [CategoryController::class, 'index']);
+                    Route::get('/create', [CategoryController::class, 'create']);
+                    Route::post('/create', [CategoryController::class, 'store']);
+                    Route::get('{id}/edit', [CategoryController::class, 'edit']);
+                    Route::post('{id}/edit', [CategoryController::class, 'update']);
+                    Route::get('{id}/destroy', [CategoryController::class, 'destroy']);
                 });
 
                 Route::group(['prefix' => 'settings'],function(){
-                    Route::get('/edit', 'App\Http\Controllers\Dashboard\SettingController@edit');
-                    Route::post('/edit', 'App\Http\Controllers\Dashboard\SettingController@update');
+                    Route::get('/edit', [SettingController::class, 'edit']);
+                    Route::post('/edit', [SettingController::class, 'update']);
                 });
 
-                Route::get('/profile', 'App\Http\Controllers\Dashboard\ProfileController@edit');
-                Route::post('/profile', 'App\Http\Controllers\Dashboard\ProfileController@update');
-                Route::post('/update_image', 'App\Http\Controllers\Dashboard\ProfileController@update_image')->name('admin.upload.image');
+                Route::get('/profile', [ProfileController::class, 'edit']);
+                Route::post('/profile', [ProfileController::class, 'update']);
+                Route::post('/update_image', [ProfileController::class, 'update_image'])->name('admin.upload.image');
             });
         });
 });

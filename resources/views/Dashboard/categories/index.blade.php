@@ -58,7 +58,7 @@
                                 </button>
                                 <div class="dropdown-menu" role="menu">
                                   @if (auth('user')->user()->has_permission('update-Categories'))
-                                    <a class="dropdown-item" href="{{url('dashboard/categories/edit/' . $category->id)}}">{{ trans('admin.Edit') }}</a>
+                                    <a class="dropdown-item" href="{{url('dashboard/categories/'. $category->id .' /edit')}}">{{ trans('admin.Edit') }}</a>
                                   @endif
 
                                   @if (auth('user')->user()->has_permission('delete-Categories'))
@@ -68,7 +68,7 @@
                               </div>
 
                               @include('partials.delete_confirmation', [
-                                'url' => url('dashboard/categories/destroy/' . $category->id),
+                                'url' => url('dashboard/categories/'. $category->id .'/destroy'),
                                 'modal_id'  => 'modal-default-' . $category->id,
                               ])
                           </td>
