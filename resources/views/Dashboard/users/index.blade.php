@@ -22,7 +22,7 @@
     <!-- /.content-header -->
 
     <!--start filter-->
-    @include('admins.users.filter')
+    @include('Dashboard.users.filter')
     <!--end filter-->
 
     <!-- Main content -->

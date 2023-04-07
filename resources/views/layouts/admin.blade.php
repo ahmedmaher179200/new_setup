@@ -1,17 +1,17 @@
 @yield('style')
 
-@include('admins.includes.header')
+@include('Dashboard.includes.header')
 
-@include('admins.includes.navbar')
+@include('Dashboard.includes.navbar')
 
-@include('admins.includes.aside')
+@include('Dashboard.includes.aside')
 
 <div class="content-wrapper">
     @yield('content')
 </div>
 
-@include('admins.includes.footer')
+@include('Dashboard.includes.footer')
 
 @yield('script')
 
-@include('admins.partials._session')
+@include('Dashboard.partials._session')

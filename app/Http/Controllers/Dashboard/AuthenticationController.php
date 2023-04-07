@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthenticationController extends Controller
 {
     public function loginView(){
-        return view('admins.login');
+        return view('Dashboard.login');
     }
 
     public function login(login $Request){

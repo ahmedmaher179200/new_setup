@@ -12,7 +12,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/categories')}}">{{ trans('admin.Categories') }}</a> / {{ trans('admin.Create') }}</li>
+                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/categories')}}">{{ trans('admin.Categories') }}</a> / {{ trans('admin.Edit') }}</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -28,17 +28,17 @@
             <!-- general form elements -->
             <div class="card card-primary">
                 <div class="card-header">
-                <h3 class="card-title">{{ trans('admin.Create') }}</h3>
+                <h3 class="card-title">{{ trans('admin.Edit') }}</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form method="post" action="">
                     @csrf
-                    @include('admins.categories.form')
+                    @include('Dashboard.categories.form')
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">{{ trans('admin.Add') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ trans('admin.Save') }}</button>
                     </div>
                 </form>
             </div>

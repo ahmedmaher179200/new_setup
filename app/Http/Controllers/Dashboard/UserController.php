@@ -32,7 +32,7 @@ class UserController extends Controller
         $users = User::where('super', '!=', 1)->get();
         $roles = Role::get();
 
-        return view('admins.users.index')->with([
+        return view('Dashboard.users.index')->with([
             'users'=> $users,
             'roles' => $roles,
         ]);
@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function create(){
         $roles = Role::all();
-        return view('admins.users.create')->with('roles', $roles);
+        return view('Dashboard.users.create')->with('roles', $roles);
     }
 
     public function store(createRequest $request){
@@ -65,7 +65,7 @@ class UserController extends Controller
         if($user->super == 1)
             return redirect('dashboard/users')->with('error', trans('admin.you can\'t update this user'));
         
-        return view('admins.users.edit')->with([
+        return view('Dashboard.users.edit')->with([
             'roles' => $roles,
             'data' => $user,
         ]);
@@ -111,7 +111,7 @@ class UserController extends Controller
     public function activity_logs($id){
         $user = User::findOrFail($id);
 
-        return view('admins.users.activity_logs')->with([
+        return view('Dashboard.users.activity_logs')->with([
             'user' => $user,
         ]);
     }

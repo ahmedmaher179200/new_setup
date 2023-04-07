@@ -22,7 +22,7 @@ class ProfileController extends Controller
     }
 
     public function edit(){
-        return view('admins.profile.show')->with([
+        return view('Dashboard.profile.show')->with([
             'data' => auth('user')->user(),
         ]);
     }

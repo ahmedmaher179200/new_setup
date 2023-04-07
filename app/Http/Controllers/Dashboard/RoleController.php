@@ -29,11 +29,11 @@ class RoleController extends Controller
 
     public function index(){
         $roles = Role::get();
-        return view('admins.roles.index')->with('roles', $roles);
+        return view('Dashboard.roles.index')->with('roles', $roles);
     }
 
     public function create(){
-        return view('admins.roles.create');
+        return view('Dashboard.roles.create');
     }
 
     public function store(createRequest $request){
@@ -54,7 +54,7 @@ class RoleController extends Controller
     public function edit($role_id){
         $role = Role::findOrFail($role_id);
 
-        return view('admins.roles.edit')->with('data', $role);
+        return view('Dashboard.roles.edit')->with('data', $role);
     }
 
     public function update($role_id, editRequest $request){

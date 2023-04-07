@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index(){
         $categories = Category::tree()->get();
-        return view('admins.categories.index')->with([
+        return view('Dashboard.categories.index')->with([
             'categories'    => $categories,
         ]);
     }
@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function create(){
         $categories = Category::tree(0)->get();
 
-        return view('admins.categories.create')->with([
+        return view('Dashboard.categories.create')->with([
             'categories'    => $categories,
         ]);
     }
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         $categories = Category::tree(0)->get();
         $data = Category::findOrFail($id);
 
-        return view('admins.categories.edit')->with([
+        return view('Dashboard.categories.edit')->with([
             'categories'    => $categories,
             'data'  => $data,
         ]);
