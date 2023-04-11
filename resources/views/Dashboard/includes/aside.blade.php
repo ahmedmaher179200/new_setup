@@ -45,7 +45,7 @@
                 <i class="fas fa-user"></i>
                 <p>
                   {{ trans('admin.Users Mangement') }}
-                  <i class="right fas fa-wreath"></i>
+                  <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
