@@ -4,25 +4,29 @@ namespace App\View\Components\form;
 
 use Illuminate\View\Component;
 
-class textarea extends Component
+class multipleSelect extends Component
 {
+    public $collection;
     public $name;
     public $class;
-    public $value;
+    public $index;
     public $label;
-    public $attribute;
+    public $id;
+    public $selectArr;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($class, $name ="test", $value, $label ="", $attribute="")
+    public function __construct($collection, $name, $class, $index, $label, $selectArr, $id="")
     {
+        $this->collection = $collection;
         $this->name = $name;
         $this->class = $class;
-        $this->value = $value;
+        $this->index = $index;
         $this->label = $label;
-        $this->attribute = $attribute;
+        $this->id = $id;
+        $this->selectArr = $selectArr;
     }
 
     /**
@@ -32,6 +36,6 @@ class textarea extends Component
      */
     public function render()
     {
-        return view('components.form.textarea');
+        return view('components.form.multiple-select');
     }
 }

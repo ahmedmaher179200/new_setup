@@ -10,7 +10,7 @@
 
         <div class="col-lg-6">
             <x-form.select class="form-control select2" id=""
-            :collection="$categories" select="{{ isset($data) ? $data->parent_id : old('parent_id') }}" value="id"
+            :collection="$categories" select="{{ isset($data) ? $data->parent_id : old('parent_id') }}" index="id"
             name="parent_id" label="{{ trans('admin.Category') }}"/>
         </div>
     </div>

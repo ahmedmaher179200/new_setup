@@ -20,7 +20,7 @@
 
         <div class="col-lg-6">
             <x-form.select class="form-control select2" id=""
-            :collection="$roles" select="{{ isset($data) ? $data->getRoleId() : old('role_id') }}" value="id"
+            :collection="$roles" select="{{ isset($data) ? $data->getRoleId() : old('role_id') }}" index="id"
             name="role_id" label="{{ trans('admin.Roles') }}"/>
         </div>
     </div>
