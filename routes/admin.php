@@ -42,7 +42,7 @@ Route::group(
                 Route::get('/logout', [AuthenticationController::class, 'logout']);
         
                 Route::group(['prefix' => 'users'],function(){
-                    Route::get('/', [UserController::class, 'index']);
+                    Route::get('/', [UserController::class, 'index'])->name('dashboard.users.index');
                     Route::get('/create', [UserController::class, 'create']);
                     Route::post('/create', [UserController::class, 'store']);
                     Route::get('{id}/edit', [UserController::class, 'edit']);

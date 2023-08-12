@@ -14,8 +14,8 @@
         <div class="card-body">
           <div class="col-lg-6">
               <x-form.select class="form-control select2" id="role"
-              :collection="$roles" select="" index="display_name"
-              name="role_id" label="{{ trans('admin.Roles') }}"/>
+              :collection="$roles" select="" index="name"
+              name="role" label="{{ trans('admin.Roles') }}" firstDisabled="false"/>
           </div>
         </div>
         <!-- /.card-body -->

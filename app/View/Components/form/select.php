@@ -13,6 +13,7 @@ class select extends Component
     public $label;
     public $id;
     public $select;
+    public $firstDisabled;
 
 
     /**
@@ -20,7 +21,7 @@ class select extends Component
      *
      * @return void
      */
-    public function __construct($collection, $name, $class, $label, $select, $index="",$id="")
+    public function __construct($collection, $name, $class="", $label="label", $select = null, $index="", $id="", $firstDisabled="true")
     {
         $this->collection = $collection;
         $this->name = $name;
@@ -29,6 +30,7 @@ class select extends Component
         $this->label = $label;
         $this->id = $id;
         $this->select = $select;
+        $this->firstDisabled = $firstDisabled;
     }
 
     /**

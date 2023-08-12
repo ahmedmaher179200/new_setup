@@ -12,6 +12,8 @@ use App\Services\UsersService;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -28,12 +30,62 @@ class UserController extends Controller
         $this->middleware('permissionMiddleware:create-users')->only(['create', 'store']);
     }
 
-    public function index(){
-        $users = User::where('super', '!=', 1)->get();
+    // public function index(){
+    //     $users = User::where('super', '!=', 1)->get();
+    //     $roles = Role::get();
+
+    //     return view('Dashboard.users.index')->with([
+    //         'users'=> $users,
+    //         'roles' => $roles,
+    //     ]);
+    // }
+
+    public function index(Request $request){
         $roles = Role::get();
 
-        return view('Dashboard.users.index')->with([
-            'users'=> $users,
+        if ($request->ajax()) {
+            $data = User::where('super', '!=', 1);
+
+            if($request->role){
+                $data->whereRoleIs($request->role);
+            }
+
+
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $btn =  '<div class="btn-group"><button type="button" class="btn btn-success">'. trans('admin.Actions') .'</button><button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"></button><div class="dropdown-menu" role="menu">';
+
+                        //my menu
+                        if (auth('user')->user()->has_permission('update-users')) {
+                            $btn .= '<a class="dropdown-item" href="' . url('dashboard/users/' . $row->id . '/edit').'">' . trans("admin.Edit") . '</a>';
+                        }
+
+                        if (auth('user')->user()->has_permission('update-users')) {
+                            $btn .= '<a class="dropdown-item" href="' . url('dashboard/users/' . $row->id . '/activity-logs').'">' . trans('admin.Activity logs') . '</a>';
+                        }
+
+                        if (auth('user')->user()->has_permission('delete-users')) {
+                            $btn .= '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-default-' . $row->id.'">' . trans('admin.Delete') . '</a>';
+                        }
+                        
+                        $btn.= '</div></div>';
+
+                        //delete alert
+                        $btn .= view("partials.delete_confirmation", [
+                            'url' => url('dashboard/users/' . $row->id . '/destroy'),
+                            'modal_id'  => 'modal-default-' . $row->id,
+                        ]);
+                        return $btn;
+                    })
+                    ->addColumn('role', function($row){
+                        return $row->getRole();
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+
+        return view('Dashboard.users.index_yajra')->with([
             'roles' => $roles,
         ]);
     }
