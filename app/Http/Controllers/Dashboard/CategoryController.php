@@ -28,24 +28,13 @@ class CategoryController extends Controller
     public function store(Request $request){
         try{
             DB::beginTransaction();
-                ($request->status== 1)? $active = 1: $active = 0;
+                $input = $request->only('parent_id', 'en', 'ar');
 
-                $new_category = Category::create([
-                    'status'            => $active,
-                    'parent_id'         => $request->parent_id,
-                ]);
-
-                foreach($request->categories as $key=>$category){
-                    CategoryTranslation::create([
-                        'name'              => $category['name'],
-                        'locale'            => $key,
-                        'category_id'       => $new_category['id'],
-                    ]);
-                }
-
+                Category::create($input);
             DB::commit();
             return redirect('dashboard/categories')->with('success', 'success');
         } catch(\Exception $ex){
+            return $ex;
             return redirect('dashboard/categories')->with('error', 'faild');
         }
     }
@@ -61,22 +50,12 @@ class CategoryController extends Controller
     }
 
     public function update(Request $request, $id){
+        $input = $request->only('parent_id', 'en', 'ar');
         $category = Category::findOrFail($id);
-        $categoriesTranslation = CategoryTranslation::where('category_id', $id)->get();
 
         try{
             DB::beginTransaction();
-                ($request->status== 1)? $active = 1: $active = 0;
-
-                $category->status            = $active;
-                $category->parent_id         = $request->parent_id;
-                $category->save();
-
-                foreach($categoriesTranslation as $categoryTranslation){
-                    $categoryTranslation->name = $request->categories[$categoryTranslation->locale]['name'];
-                    $categoryTranslation->save();
-                }
-
+                $category->update($input);
             DB::commit();
             return redirect('dashboard/categories')->with('success', 'success');
         } catch(\Exception $ex){

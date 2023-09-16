@@ -3,7 +3,7 @@
         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
             <div class="col-lg-6">
                 <x-form.input type="text" class="form-control" attribute="required"
-                    name="categories[{{$localeCode}}][name]" value="{{ isset($data) ? $data->translate($localeCode)->name : old('name') }}"
+                    name="{{$localeCode}}[name]" value="{{ isset($data) ? $data->translate($localeCode)->name : old('name') }}"
                     label="{{ trans('admin.name') }} ({{$properties['native']}})"/>
             </div>
         @endforeach
