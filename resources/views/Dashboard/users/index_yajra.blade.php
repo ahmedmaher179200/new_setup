@@ -79,7 +79,17 @@
             {data: 'role', name: 'role'},
             {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
-        ]
+        ],
+        dom: 'lBfrtip',
+        buttons: [
+                    { extend: 'copy',  exportOptions: { modifier: { page: 'all', search: 'none' } } },
+                    { extend: 'excel', exportOptions: { modifier: { page: 'all', search: 'none' } } },
+                    { extend: 'csv',   exportOptions: { modifier: { page: 'all', search: 'none' } } },
+                    { extend: 'pdf',   exportOptions: { modifier: { page: 'all', search: 'none' } } },
+                    { extend: 'print', exportOptions: { modifier: { page: 'all', search: 'none' } } },
+                    { extend: 'colvis', exportOptions: { modifier: { page: 'all', search: 'none' } } },
+                ],
+        // "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, 'All'] ]
     });
 
   $(document).on('change', '#role', function() {

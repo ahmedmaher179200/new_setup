@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Exception;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 trait Upload
@@ -30,7 +31,6 @@ trait Upload
                     $new_height = ($image_resize->height() / 100) * $original_width_origin;
                     $new_width = $width;
                 }
-                
                 
                 $image_resize->resize($new_width, $new_height)
                             ->save(public_path($path . '/' . $imageName));
