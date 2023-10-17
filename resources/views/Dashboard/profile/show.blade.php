@@ -12,7 +12,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Profile') }}</li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Profile') }}</li>
               </ol>
             </div>
           </div>
@@ -35,7 +35,7 @@
                     <br>
                     <br>
 
-                    <form method="POST" action="{{ route('admin.upload.image') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('dashboard.upload.image') }}" enctype="multipart/form-data">
                       @csrf
                       <input type="file" name="image" id="file" style="margin: 20px 0px;display: none;">
                       <input class="btn btn-success form-control" type="submit" value="{{trans('admin.Save')}}" name="submit">

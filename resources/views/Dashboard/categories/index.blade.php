@@ -13,7 +13,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Categories') }}</li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Categories') }}</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,7 +27,7 @@
         <div class="card">
           <div class="card-header">
             @if (auth('user')->user()->has_permission('create-Categories'))
-              <a href="{{url('dashboard/categories/create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
+              <a href="{{route('dashboard.categories.create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
             @else
               <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
             @endif
@@ -58,7 +58,7 @@
                                 </button>
                                 <div class="dropdown-menu" role="menu">
                                   @if (auth('user')->user()->has_permission('update-Categories'))
-                                    <a class="dropdown-item" href="{{url('dashboard/categories/'. $category->id .' /edit')}}">{{ trans('admin.Edit') }}</a>
+                                    <a class="dropdown-item" href="{{route('dashboard.categories.edit',$category->id)}}">{{ trans('admin.Edit') }}</a>
                                   @endif
 
                                   @if (auth('user')->user()->has_permission('delete-Categories'))
@@ -68,7 +68,7 @@
                               </div>
 
                               @include('partials.delete_confirmation', [
-                                'url' => url('dashboard/categories/'. $category->id .'/destroy'),
+                                'url' => route('dashboard.categories.destroy',$category->id),
                                 'modal_id'  => 'modal-default-' . $category->id,
                               ])
                           </td>

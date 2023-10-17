@@ -37,7 +37,7 @@
             $.ajax({
                 type: "post",
                 enctype: 'multipart/form-data',
-                url: "{{ route('summernote_upload_image') }}",
+                url: "{{ route('dashboard.summernote_upload_image') }}",
                 data: formData,
                 processData: false,
                 contentType: false,

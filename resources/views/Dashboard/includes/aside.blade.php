@@ -30,7 +30,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{url('dashboard')}}" class="nav-link {{request()->is('*/dashboard')? 'active':''}}">
+            <a href="{{route('dashboard.home')}}" class="nav-link {{request()->is('*/dashboard')? 'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 {{ trans('admin.Dashboard') }}
@@ -40,7 +40,7 @@
 
           {{-- menu-open --}}
           @if (auth('user')->user()->has_permission('read-users'))
-            <li class="nav-item {{(request()->is('*/dashboard/users') || request()->is('*/dashboard/users/*') || request()->is('*/dashboard/roles') || request()->is('*/dashboard/roles/*'))? 'menu-open':''}}">
+            <li class="nav-item {{(request()->routeIs('dashboard.users.*') || request()->routeIs('dashboard.roles.*'))? 'menu-open':''}}">
               <a href="#" class="nav-link">
                 <i class="fas fa-user"></i>
                 <p>
@@ -50,14 +50,14 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{url('dashboard/users')}}" class="nav-link {{(request()->is('*/dashboard/users') || request()->is('*/dashboard/users/*'))? 'active':''}}">
+                  <a href="{{route('dashboard.users.index')}}" class="nav-link {{(request()->routeIs('dashboard.users.*'))? 'active':''}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{ trans('admin.Users') }}</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="{{url('dashboard/roles')}}" class="nav-link {{(request()->is('*/dashboard/roles') || request()->is('*/dashboard/roles/*'))? 'active':''}}">
+                  <a href="{{route('dashboard.roles.index')}}" class="nav-link {{( request()->routeIs('dashboard.roles.*'))? 'active':''}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{ trans('admin.Roles') }} </p>
                   </a>
@@ -68,7 +68,7 @@
 
           @if (auth('user')->user()->has_permission('read-categories'))
             <li class="nav-item">
-              <a href="{{url('dashboard/categories')}}" class="nav-link {{request()->is('*/dashboard/categories') ||  request()->is('*/dashboard/categories/*')? 'active':''}}">
+              <a href="{{route('dashboard.categories.index')}}" class="nav-link {{request()->routeIs('dashboard.categories.*')? 'active':''}}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   {{ trans('admin.Categories') }}
@@ -79,7 +79,7 @@
           
           @if (auth('user')->user()->has_permission('read-settings'))
             <li class="nav-item">
-              <a href="{{url('dashboard/settings/edit')}}" class="nav-link {{request()->is('*/dashboard/settings/edit')? 'active':''}}">
+              <a href="{{route('dashboard.settings.edit')}}" class="nav-link {{request()->routeIs('dashboard.settings.*')? 'active':''}}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   {{ trans('admin.Settings') }}

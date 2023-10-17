@@ -13,7 +13,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Users') }}</li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Users') }}</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -31,7 +31,7 @@
         <div class="card">
           <div class="card-header">
             @if (auth('user')->user()->has_permission('create-users'))
-              <a href="{{url('dashboard/users/create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
+              <a href="{{route('dashboard.users.create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
             @else
               <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
             @endif

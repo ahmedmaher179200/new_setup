@@ -13,7 +13,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Roles') }}</li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">{{ trans('admin.Home') }}</a> / {{ trans('admin.Roles') }}</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,7 +27,7 @@
           <div class="card">
             <div class="card-header">
               @if (auth('user')->user()->has_permission('create-roles'))
-                <a href="{{url('dashboard/roles/create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
+                <a href="{{route('dashboard.roles.create')}}" type="button" class="btn btn-info">{{ trans('admin.Add') }}</a>
               @else
                 <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
               @endif
@@ -58,16 +58,16 @@
                                     </button>
                                     <div class="dropdown-menu" role="menu">
                                       @if (auth('user')->user()->has_permission('update-roles'))
-                                        <a class="dropdown-item" href="{{url('dashboard/roles/' . $role->id .'/edit')}}">{{ trans('admin.Edit') }}</a>
+                                        <a class="dropdown-item" href="{{route('dashboard.roles.edit', $role->id)}}">{{ trans('admin.Edit') }}</a>
                                       @endif
 
                                       @if (auth('user')->user()->has_permission('delete-roles'))
-                                        <a class="dropdown-item" href="{{url('dashboard/roles/' . $role->id .'/delete')}}" data-toggle="modal" data-target="#modal-default-{{$role->id}}">{{ trans('admin.Delete') }}</a>
+                                        <a class="dropdown-item" href="{{route('dashboard.roles.destroy', $role->id)}}" data-toggle="modal" data-target="#modal-default-{{$role->id}}">{{ trans('admin.Delete') }}</a>
                                       @endif
                                     </div>
                                   </div>
                                   @include('partials.delete_confirmation', [
-                                    'url' => url('dashboard/roles/' . $role->id .'/destroy'),
+                                    'url' => route('dashboard.roles.destroy', $role->id),
                                     'modal_id'  => 'modal-default-' . $role->id,
                                   ])
                             </td>

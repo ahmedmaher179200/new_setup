@@ -7,7 +7,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('dashboard')}}" class="nav-link">{{ trans('admin.Home') }}</a>
+        <a href="{{route('dashboard.home')}}" class="nav-link">{{ trans('admin.Home') }}</a>
       </li>
     </ul>
 
@@ -34,10 +34,10 @@
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="{{url('dashboard/profile')}}" class="dropdown-item">
+          <a href="{{route('dashboard.profile.edit')}}" class="dropdown-item">
             {{ trans('admin.Profile') }}
           </a>
-          <a href="{{url('dashboard/logout')}}" class="dropdown-item">
+          <a href="{{route('dashboard.logout')}}" class="dropdown-item">
             {{ trans('admin.logout') }}
           </a>
         </div>

@@ -30,16 +30,6 @@ class UserController extends Controller
         $this->middleware('permissionMiddleware:create-users')->only(['create', 'store']);
     }
 
-    // public function index(){
-    //     $users = User::where('super', '!=', 1)->get();
-    //     $roles = Role::get();
-
-    //     return view('Dashboard.users.index')->with([
-    //         'users'=> $users,
-    //         'roles' => $roles,
-    //     ]);
-    // }
-
     public function index(Request $request){
         $roles = Role::get();
 
@@ -58,11 +48,11 @@ class UserController extends Controller
 
                         //my menu
                         if (auth('user')->user()->has_permission('update-users')) {
-                            $btn .= '<a class="dropdown-item" href="' . url('dashboard/users/' . $row->id . '/edit').'">' . trans("admin.Edit") . '</a>';
+                            $btn .= '<a class="dropdown-item" href="' . route('dashboard.users.edit', $row->id).'">' . trans("admin.Edit") . '</a>';
                         }
 
                         if (auth('user')->user()->has_permission('update-users')) {
-                            $btn .= '<a class="dropdown-item" href="' . url('dashboard/users/' . $row->id . '/activity-logs').'">' . trans('admin.Activity logs') . '</a>';
+                            $btn .= '<a class="dropdown-item" href="' . route('dashboard.users.activityLogs', $row->id) .'">' . trans('admin.Activity logs') . '</a>';
                         }
 
                         if (auth('user')->user()->has_permission('delete-users')) {
@@ -73,7 +63,7 @@ class UserController extends Controller
 
                         //delete alert
                         $btn .= view("partials.delete_confirmation", [
-                            'url' => url('dashboard/users/' . $row->id . '/destroy'),
+                            'url' =>  route('dashboard.users.destroy', $row->id),
                             'modal_id'  => 'modal-default-' . $row->id,
                         ]);
                         return $btn;

@@ -12,7 +12,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{url('dashboard')}}">{{ trans('admin.Home') }}</a> / <a href="{{url('dashboard/categories')}}">{{ trans('admin.Categories') }}</a> / {{ trans('admin.Edit') }}</li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">{{ trans('admin.Home') }}</a> / <a href="{{route('dashboard.categories.index')}}">{{ trans('admin.Categories') }}</a> / {{ trans('admin.Edit') }}</li>
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
