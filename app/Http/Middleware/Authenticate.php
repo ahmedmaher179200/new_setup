@@ -17,9 +17,9 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             if (Request::segment(2) == 'dashboard' || Request::segment(1) == 'dashboard'){
-                return route('adminlogin');
+                return route('dashboard.adminlogin');
             }
-            return route('adminlogin');
+            return route('dashboard.adminlogin');
         }
     }
 }
