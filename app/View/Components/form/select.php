@@ -14,6 +14,8 @@ class select extends Component
     public $id;
     public $select;
     public $firstDisabled;
+    public $display;
+    public $attribute;
 
 
     /**
@@ -21,7 +23,7 @@ class select extends Component
      *
      * @return void
      */
-    public function __construct($collection, $name, $class="", $label="label", $select = null, $index="", $id="", $firstDisabled="true")
+    public function __construct($collection, $name, $class="", $label="label", $select = null, $index="", $id="", $firstDisabled="true", $display = "name", $attribute="")
     {
         $this->collection = $collection;
         $this->name = $name;
@@ -31,7 +33,10 @@ class select extends Component
         $this->id = $id;
         $this->select = $select;
         $this->firstDisabled = $firstDisabled;
+        $this->display = $display;
+        $this->attribute = $attribute;
     }
+
 
     /**
      * Get the view / contents that represent the component.

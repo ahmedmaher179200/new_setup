@@ -13,21 +13,26 @@ class multipleSelect extends Component
     public $label;
     public $id;
     public $selectArr;
+    public $attribute;
+    public $display;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($collection, $name, $class, $index, $label, $selectArr, $id="")
+    public function __construct($collection, $name, $class, $index, $label, $selectArr, $id="", $attribute="", $display="")
     {
-        $this->collection = $collection;
-        $this->name = $name;
         $this->class = $class;
-        $this->index = $index;
-        $this->label = $label;
         $this->id = $id;
+        $this->collection = $collection;
         $this->selectArr = $selectArr;
+        $this->index = $index;
+        $this->name = $name;
+        $this->label = $label;
+        $this->attribute = $attribute;
+        $this->display = $display;
     }
+
 
     /**
      * Get the view / contents that represent the component.
