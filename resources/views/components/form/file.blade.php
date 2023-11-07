@@ -7,3 +7,7 @@
         </span>
     @enderror
 </div>
+{{-- <div class="col-lg-12">
+    <x-form.file name="image" class="form-control"
+        attribute="required" label="image"/>
+</div> --}}

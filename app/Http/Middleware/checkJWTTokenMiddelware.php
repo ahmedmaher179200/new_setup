@@ -26,7 +26,6 @@ class checkJWTTokenMiddelware
     {
         try {
             config(['auth.defaults.guard' => 'user_api']);
-
             $user = JWTAuth::parseToken()->authenticate();
             $token = JWTAuth::getToken();
             $payload = JWTAuth::getPayload($token)->toArray();

@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="form-group">
         <label>{{$label}}</label>
-        <textarea class="{{$class}}" id="summernote_{{$name}}" name="{{$name}}" {{$attribute}}>{{$value}}</textarea>
+        <textarea class="{{$class}}" id="{{$key}}" name="{{$name}}" {{$attribute}}>{{$value}}</textarea>
         @error($name)
             <small class=" text text-danger" role="alert">
                 <strong>{{ $message }}</strong>
@@ -14,7 +14,7 @@
 <script>
     $(function () {
         // Summernote
-        $('#summernote_{{$name}}').summernote({
+        $('#{{$key}}').summernote({
             height: ($(window).height() - 300),
             callbacks: {
                 onImageUpload: function(files) {
@@ -44,7 +44,7 @@
                 cache: false,
                 success: function (url) {
                     var image = $('<img>').attr('src', url);
-                    $('#summernote_{{$name}}').summernote("insertNode", image[0]);
+                    $('#{{$key}}').summernote("insertNode", image[0]);
                     $("#loading-image").modal("hide");
                 },
                 error: function (url) {
@@ -86,3 +86,7 @@
         });
     })
 </script>
+
+{{-- <x-form.textarea class="form-control" attribute="required"
+name="{{$localeCode}}[text]" key="text_{{$localeCode}}" value="{{ isset($data) ? $data->translate($localeCode)->text : old('text') }}"
+label="{{ trans('admin.text') }} ({{$properties['native']}})"/> --}}

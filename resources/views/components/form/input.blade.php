@@ -7,3 +7,8 @@
         </span>
     @enderror
 </div>
+{{-- <div class="col-lg-6">
+    <x-form.input type="text" class="form-control" attribute="required"
+        name="name" value="{{ isset($data) ? $data->name : old('name') }}"
+        label="{{ trans('admin.Name') }}" />
+</div> --}}

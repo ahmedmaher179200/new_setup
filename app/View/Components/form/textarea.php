@@ -11,18 +11,21 @@ class textarea extends Component
     public $value;
     public $label;
     public $attribute;
+    public $key;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($class, $name ="test", $value, $label ="", $attribute="")
+    public function __construct($class, $name ="test", $value, $label ="", $attribute="", $key="")
     {
-        $this->name = $name;
         $this->class = $class;
-        $this->value = $value;
-        $this->label = $label;
         $this->attribute = $attribute;
+        $this->label = $label;
+        $this->name = $name;
+        $this->value = $value;
+        $this->key = $key;
     }
 
     /**

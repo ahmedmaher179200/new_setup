@@ -73,5 +73,7 @@ class Kernel extends HttpKernel
 
         'permissionMiddleware'      => Middleware\dashboard\permissionMiddleware::class,
         'checkJWTTokenMiddelware'      => Middleware\checkJWTTokenMiddelware::class,
+        'changeLangMiddleware'      => Middleware\api\changeLangMiddleware::class,
+
     ];
 }
