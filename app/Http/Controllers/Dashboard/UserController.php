@@ -75,7 +75,7 @@ class UserController extends Controller
                     ->make(true);
         }
 
-        return view('Dashboard.users.index_yajra')->with([
+        return view('Dashboard.users.index')->with([
             'roles' => $roles,
         ]);
     }

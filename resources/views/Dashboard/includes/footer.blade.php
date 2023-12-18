@@ -11,6 +11,8 @@
 </div>
   <!-- ./wrapper -->
 
+  <script src="{{ asset('theme/dashboard/dist/js/pdfmake.js')}}"></script>
+  <script src="{{ asset('theme/dashboard/dist/js/vfs_fonts.js')}}"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="{{ asset('theme/dashboard/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

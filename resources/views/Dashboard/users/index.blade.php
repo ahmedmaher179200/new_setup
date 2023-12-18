@@ -82,12 +82,12 @@
         ],
         dom: 'lBfrtip',
         buttons: [
-                    { extend: 'copy',  exportOptions: { modifier: { page: 'all', search: 'none' } } },
-                    { extend: 'excel', exportOptions: { modifier: { page: 'all', search: 'none' } } },
-                    { extend: 'csv',   exportOptions: { modifier: { page: 'all', search: 'none' } } },
-                    { extend: 'pdf',   exportOptions: { modifier: { page: 'all', search: 'none' } } },
-                    { extend: 'print', exportOptions: { modifier: { page: 'all', search: 'none' } } },
-                    { extend: 'colvis', exportOptions: { modifier: { page: 'all', search: 'none' } } },
+                    { extend: 'copy',  exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'excel', exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'csv',   exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'pdf',   exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'print', exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'colvis', exportOptions: {search: 'none',columns: ':visible'}},
                 ],
         // "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, 'All'] ]
     });
