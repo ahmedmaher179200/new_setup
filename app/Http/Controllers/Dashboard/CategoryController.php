@@ -40,8 +40,8 @@ class CategoryController extends Controller
     }
 
     public function edit($id){
-        $categories = Category::tree(0)->get();
         $data = Category::findOrFail($id);
+        $categories = Category::tree(0)->where('id', '!=',$id)->get();
 
         return view('Dashboard.categories.edit')->with([
             'categories'    => $categories,
