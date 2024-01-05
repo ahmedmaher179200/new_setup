@@ -26,4 +26,11 @@ class Controller extends BaseController
 
         return url('uploads/images/' . $path);
     }
+
+    public function testPopUp(){
+        return [
+            'title' => 'title',
+            'body'  => 'test',
+        ];
+    }
 }

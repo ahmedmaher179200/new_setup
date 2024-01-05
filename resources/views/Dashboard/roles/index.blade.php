@@ -66,7 +66,7 @@
                                       @endif
                                     </div>
                                   </div>
-                                  @include('partials.delete_confirmation', [
+                                  @include('Dashboard.partials.delete_confirmation', [
                                     'url' => route('dashboard.roles.destroy', $role->id),
                                     'modal_id'  => 'modal-default-' . $role->id,
                                   ])

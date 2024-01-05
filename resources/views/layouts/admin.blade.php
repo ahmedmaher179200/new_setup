@@ -2,6 +2,7 @@
 
 @include('Dashboard.includes.header')
 
+
 @include('Dashboard.includes.navbar')
 
 @include('Dashboard.includes.aside')
@@ -14,4 +15,7 @@
 
 @yield('script')
 
+@include('Dashboard.includes.ajax')
+
 @include('Dashboard.partials._session')
+@include('Dashboard.partials.popup')

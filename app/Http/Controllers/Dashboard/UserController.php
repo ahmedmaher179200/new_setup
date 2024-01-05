@@ -62,7 +62,7 @@ class UserController extends Controller
                         $btn.= '</div></div>';
 
                         //delete alert
-                        $btn .= view("partials.delete_confirmation", [
+                        $btn .= view("Dashboard.partials.delete_confirmation", [
                             'url' =>  route('dashboard.users.destroy', $row->id),
                             'modal_id'  => 'modal-default-' . $row->id,
                         ]);

@@ -82,4 +82,6 @@ Route::group(
                 Route::post('/update_image', [ProfileController::class, 'update_image'])->name('upload.image');
             });
         });
+
+        Route::get('/test-pop-up', [HomeController::class, 'testPopUp'])->name('testPopUp');
 });
