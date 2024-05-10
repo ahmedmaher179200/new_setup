@@ -97,7 +97,7 @@ class UserController extends Controller
             'properties'      => null,
         ]);
 
-        return redirect('dashboard/users')->with('success', 'success');
+        return redirect(route('dashboard.users.index'))->with('success', 'success');
     }
 
     public function edit($id){
@@ -105,7 +105,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if($user->super == 1)
-            return redirect('dashboard/users')->with('error', trans('admin.you can\'t update this user'));
+            return redirect(route('dashboard.users.index'))->with('error', trans('admin.you can\'t update this user'));
         
         return view('Dashboard.users.edit')->with([
             'roles' => $roles,
@@ -127,14 +127,14 @@ class UserController extends Controller
             'properties'      => null,
         ]);
 
-        return redirect('dashboard/users')->with('success', 'success');
+        return redirect(route('dashboard.users.index'))->with('success', 'success');
     }
 
     public function destroy($user_id){
         $user = User::findOrFail($user_id);
 
         if($user->super == 1)
-            return redirect('dashboard/users')->with('error', trans('admin.you can\'t delete this user'));
+            return redirect(route('dashboard.users.index'))->with('error', trans('admin.you can\'t delete this user'));
         
         $user->delete();
 

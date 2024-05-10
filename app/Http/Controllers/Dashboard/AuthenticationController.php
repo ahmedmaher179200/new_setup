@@ -19,12 +19,12 @@ class AuthenticationController extends Controller
         if (Auth::guard('user')->attempt($credentials))
             return redirect()->intended('dashboard/login');
 
-        return redirect('dashboard')->with('error', trans('admin.username or password is wrong'));
+        return redirect(route('dashboard.home'))->with('error', trans('admin.username or password is wrong'));
     }
     
     public function logout(){
         Auth::guard('user')->logout();
 
-        return redirect('dashboard/login');
+        return redirect(route('dashboard.adminlogin'));
     }
 }

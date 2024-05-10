@@ -27,6 +27,6 @@ class SettingController extends Controller
         session(['date_format'  => $setting->date_format]);
         session(['time_zone'    => $setting->time_zone]);
 
-        return redirect('dashboard/settings/edit')->with('success', 'success');
+        return redirect(route('dashboard.settings.edit'))->with('success', 'success');
     }
 }

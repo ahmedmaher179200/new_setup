@@ -32,10 +32,9 @@ class CategoryController extends Controller
 
                 Category::create($input);
             DB::commit();
-            return redirect('dashboard/categories')->with('success', 'success');
+            return redirect(route('dashboard.categories.index'))->with('success', 'success');
         } catch(\Exception $ex){
-            return $ex;
-            return redirect('dashboard/categories')->with('error', 'faild');
+            return redirect(route('dashboard.categories.index'))->with('error', 'faild');
         }
     }
 
@@ -57,15 +56,15 @@ class CategoryController extends Controller
             DB::beginTransaction();
                 $category->update($input);
             DB::commit();
-            return redirect('dashboard/categories')->with('success', 'success');
+            return redirect(route('dashboard.categories.index'))->with('success', 'success');
         } catch(\Exception $ex){
-            return redirect('dashboard/categories')->with('error', 'faild');
+            return redirect(route('dashboard.categories.index'))->with('error', 'faild');
         }
     }
 
     public function destroy($id){
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect('dashboard/categories')->with('success', 'success');
+        return redirect(route('dashboard.categories.index'))->with('success', 'success');
     }
 }

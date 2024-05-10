@@ -48,7 +48,7 @@ class RoleController extends Controller
             'properties'      => null,
         ]);
 
-        return redirect('dashboard/roles')->with('success', 'success');
+        return redirect(route('dashboard.roles.index'))->with('success', 'success');
     }
 
     public function edit($role_id){
@@ -71,7 +71,7 @@ class RoleController extends Controller
             'properties'      => null,
         ]);
 
-        return redirect('dashboard/roles')->with('success', 'success');
+        return redirect(route('dashboard.roles.index'))->with('success', 'success');
     }
 
     public function destroy($role_id){

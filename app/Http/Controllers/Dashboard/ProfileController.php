@@ -41,7 +41,7 @@ class ProfileController extends Controller
             'properties'      => null,
         ]);
 
-        return redirect('dashboard/profile')->with('success', trans('admin.success'));
+        return redirect(route('dashboard.profile.edit'))->with('success', trans('admin.success'));
     }
 
     public function update_image(Request $request){
@@ -50,6 +50,6 @@ class ProfileController extends Controller
         if($request->hasfile('image'))
             $this->UsersService->update_user_image($user, $request->file('image'));
 
-        return redirect('dashboard/profile')->with('success', trans('admin.success'));
+        return redirect(route('dashboard.profile.edit'))->with('success', trans('admin.success'));
     }
 }
