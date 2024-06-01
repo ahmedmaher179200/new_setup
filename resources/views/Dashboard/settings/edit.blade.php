@@ -37,9 +37,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <x-form.input type="text" class="form-control"
-                                    name="site_name" value="{{ $data->site_name }}"
-                                    label="{{ trans('admin.Site name') }}" attribute="required"/>
+                                @include('components.form.input', [
+                                    'class' => 'form-control',
+                                    'name' => "site_name",
+                                    'label' => trans('admin.Site name'),
+                                    'value' => isset($data) ? $data->site_name : old('site_name'),
+                                    'attribute' => 'required',
+                                ])
                             </div>
 
                             <div class="col-lg-6">

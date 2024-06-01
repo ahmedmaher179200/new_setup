@@ -1,15 +1,23 @@
 <div class="card-body">
     <div class="row">
         <div class="col-lg-6">
-                <x-form.input type="text" class="form-control" attribute="required"
-                    name="name" value="{{ isset($data) ? $data->name : old('name') }}"
-                    label="{{ trans('admin.Name') }}" />
+            @include('components.form.input', [
+                'class' => 'form-control',
+                'name' => "name",
+                'label' => trans('admin.Name'),
+                'value' => isset($data) ? $data->name : old('name'),
+                'attribute' => 'required',
+            ])
         </div>
 
         <div class="col-lg-6">
-                <x-form.input type="text" class="form-control" attribute="required"
-                    name="description" value="{{ isset($data) ? $data->description : old('description') }}"
-                    label="{{ trans('admin.Description') }}"/>
+            @include('components.form.input', [
+                'class' => 'form-control',
+                'name' => "description",
+                'label' => trans('admin.Description'),
+                'value' => isset($data) ? $data->description : old('description'),
+                'attribute' => 'required',
+            ])
         </div>
     </div>
 
@@ -23,11 +31,15 @@
                     
                     <div class="card-body">
                         @foreach ($values as $value)
-                            <x-form.checkbox class="form-control" label="{{$value}}" tag="{{$value . '-' . $key}}"
-                                value="{{$value . '-' . $key}}"  name="permissions[]"
-                                attribute="{{ isset($data) ? $data->hasPermission($value . '-' . $key) ? 'checked' : '' : '' }}"/>
+                            @include('components.form.checkbox', [
+                                'class' => 'form-control',
+                                'label' => $value,
+                                'tag' => $value . '-' . $key,
+                                'value' => $value . '-' . $key,
+                                'name' => 'permissions[]',
+                                'attribute' => isset($data) ? $data->hasPermission($value . '-' . $key) ? 'checked' : '' : '',
+                            ])
                         @endforeach
-                        
                     </div>
                 </div>
             </div>

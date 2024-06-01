@@ -13,9 +13,16 @@
         <!-- /.card-header -->
         <div class="card-body">
           <div class="col-lg-6">
-              <x-form.select class="form-control select2" id="role"
-              :collection="$roles" select="" index="name"
-              name="role" label="{{ trans('admin.Roles') }}" firstDisabled="false"/>
+            @include('components.form.select', [
+                'collection' => $roles,
+                'index' => 'name',
+                'select' => '',
+                'name' => 'role',
+                'label' => trans('admin.Roles'),
+                'class' => 'form-control select2',
+                'firstDisabled' => false,
+                'id' => 'role'
+            ])
           </div>
         </div>
         <!-- /.card-body -->

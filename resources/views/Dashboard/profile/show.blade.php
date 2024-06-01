@@ -61,22 +61,33 @@
                           @csrf
                           <div class="row" style="margin: 0 !important;">
                           <div class="col-lg-6">
-                              <x-form.input type="text" class="form-control" attribute="required"
-                                  name="username" value="{{ isset($data) ? $data->username : old('username') }}"
-                                  label="{{ trans('admin.Username') }}" />
+                            @include('components.form.input', [
+                                'class' => 'form-control',
+                                'name' => "username",
+                                'label' => trans('admin.Username'),
+                                'value' => isset($data) ? $data->username : old('username'),
+                                'attribute' => 'required',
+                            ])
                           </div>
 
 
                           <div class="col-lg-6">
-                              <x-form.input type="text" class="form-control" attribute="required"
-                                  name="name" value="{{ isset($data) ? $data->name : old('name') }}"
-                                  label="{{ trans('admin.Name') }}" />
+                            @include('components.form.input', [
+                                'class' => 'form-control',
+                                'name' => "name",
+                                'label' => trans('admin.Name'),
+                                'value' => isset($data) ? $data->name : old('name'),
+                                'attribute' => 'required',
+                            ])
                           </div>
 
                           <div class="col-lg-6">
-                              <x-form.input type="password" class="form-control" attribute="{{ isset($data) ? '' : 'required' }}"
-                                  name="password" value="{{ old('password') }}"
-                                  label="{{ trans('admin.Password') }}"/>
+                            @include('components.form.input', [
+                                'class' => 'form-control',
+                                'name' => "password",
+                                'label' => trans('admin.Password'),
+                                'value' => old('password'),
+                            ])
                           </div>
 
                           <div class="col-md-12">

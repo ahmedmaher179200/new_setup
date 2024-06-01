@@ -1,6 +1,6 @@
 @php
     if(!isset($showInput))
-        $showInput = "true";
+        $showInput = true;
 @endphp
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
@@ -17,17 +17,25 @@
         <div id="{{$name}}" class="map">
         </div> 
     </div>
-    @if ($showInput == "true")
+    @if ($showInput == true)
         <div class="col-lg-6">
-            <x-form.input type="text" class="form-control {{$latName}}" attribute="required readonly"
-                    name="{{$latName}}" value="{{$latValue}}"
-                    label="{{ trans('admin.Latitude') }}"/>
+            @include('components.form.input', [
+                'class' => 'form-control {{$latName}}',
+                'name' => $latName,
+                'label' => trans('admin.Latitude'),
+                'value' => $latValue,
+                'attribute' => 'required readonly',
+            ])
         </div>
         <br>
         <div class="col-lg-6">
-            <x-form.input type="text" class="form-control {{$longName}}" attribute="required readonly"
-                    name="{{$longName}}" value="{{$longValue}}"
-                    label="{{ trans('admin.Longitude') }}"/>
+            @include('components.form.input', [
+                'class' => 'form-control {{$longName}}',
+                'name' => $longName,
+                'label' => trans('admin.Longitude'),
+                'value' => $longValue,
+                'attribute' => 'required readonly',
+            ])
         </div>
     @endif
 </div>
@@ -62,6 +70,13 @@
 </script>
 
 {{-- example
-<x-form.map label="map" name="name2" showInput="true"
-    latName="lat" longName="long"
-    latValue="22" longValue="33"/> --}}
+    @include('components.form.map', [
+        'name' => "name",
+        'label' => 'map',
+        'showInput' => true,
+        'latName'  => 'lat',
+        'longName'  => 'long',
+        'latValue'  => 11,
+        'longValue'  => 21,
+    ])
+--}}

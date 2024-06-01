@@ -7,7 +7,12 @@
         </span>
     @enderror
 </div>
+
 {{-- <div class="col-lg-12">
-    <x-form.file name="image" class="form-control"
-        attribute="required" label="image"/>
+    @include('components.form.input', [
+        'name' => "image",
+        'label' => 'label',
+        'attribute' => 'required',
+        'class' => 'form-control',
+    ])
 </div> --}}

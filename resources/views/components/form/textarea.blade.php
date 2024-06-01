@@ -1,3 +1,8 @@
+@php
+    if(!isset($key))
+        $key = '';
+@endphp
+
 <div class="col-md-12">
     <div class="form-group">
         <label>{{$label}}</label>
@@ -52,29 +57,29 @@
                     alert('false');
                 },
             xhr: function () {
-              //upload Progress
-              var xhr = $.ajaxSettings.xhr();
-              if (xhr.upload) {
-                xhr.upload.addEventListener(
-                  "progress",
-                  function (event) {
-                    var percent = 0;
-                    var position = event.loaded || event.position;
-                    var total = event.total;
-                    if (event.lengthComputable) {
-                      percent = Math.ceil((position / total) * 100);
-                    }
-                    //update progressbar
-                    $("#image-progress" + " .progress-bar").css(
-                      "width",
-                      +percent + "%"
+                //upload Progress
+                var xhr = $.ajaxSettings.xhr();
+                if (xhr.upload) {
+                    xhr.upload.addEventListener(
+                    "progress",
+                    function (event) {
+                        var percent = 0;
+                        var position = event.loaded || event.position;
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                        percent = Math.ceil((position / total) * 100);
+                        }
+                        //update progressbar
+                        $("#image-progress" + " .progress-bar").css(
+                            "width",
+                            +percent + "%"
+                        );
+                        $("#image-progress" + " .progress-bar").text(percent + "%");
+                    },
+                    true
                     );
-                    $("#image-progress" + " .progress-bar").text(percent + "%");
-                  },
-                  true
-                );
-              }
-              return xhr;
+                }
+                return xhr;
             },
             });
         }
@@ -87,6 +92,13 @@
     })
 </script>
 
-{{-- <x-form.textarea class="form-control" attribute="required"
-name="{{$localeCode}}[text]" key="text_{{$localeCode}}" value="{{ isset($data) ? $data->translate($localeCode)->text : old('text') }}"
-label="{{ trans('admin.text') }} ({{$properties['native']}})"/> --}}
+{{--
+    @include('components.form.textarea', [
+        'class' => 'form-control',
+        'name' => "name",
+        'key' => 'text_1',
+        'label' => trans('admin.text'),
+        'value' => isset($data) ? $data->text : old('text'),
+        'attribute' => 'required',
+    ])
+--}}
