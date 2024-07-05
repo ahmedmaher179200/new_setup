@@ -62,14 +62,10 @@
                                       @endif
 
                                       @if (auth('user')->user()->has_permission('delete-roles'))
-                                        <a class="dropdown-item" href="{{route('dashboard.roles.destroy', $role->id)}}" data-toggle="modal" data-target="#modal-default-{{$role->id}}">{{ trans('admin.Delete') }}</a>
+                                        <a class="dropdown-item delete-popup" href="#" data-toggle="modal" data-target="#modal-default" data-url="{{route('dashboard.roles.destroy', $role->id)}}">{{ trans('admin.Delete') }}</a>
                                       @endif
                                     </div>
                                   </div>
-                                  @include('Dashboard.partials.delete_confirmation', [
-                                    'url' => route('dashboard.roles.destroy', $role->id),
-                                    'modal_id'  => 'modal-default-' . $role->id,
-                                  ])
                             </td>
                         </tr>
                     @endforeach

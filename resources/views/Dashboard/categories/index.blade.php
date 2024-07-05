@@ -62,15 +62,10 @@
                                   @endif
 
                                   @if (auth('user')->user()->has_permission('delete-Categories'))
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-default-{{$category->id}}">{{ trans('admin.Delete') }}</a>
+                                    <a class="dropdown-item delete-popup" href="#" data-toggle="modal" data-target="#modal-default" data-url="{{route('dashboard.categories.destroy', $category->id)}}">{{ trans('admin.Delete') }}</a>
                                   @endif
                                 </div>
                               </div>
-
-                              @include('Dashboard.partials.delete_confirmation', [
-                                'url' => route('dashboard.categories.destroy',$category->id),
-                                'modal_id'  => 'modal-default-' . $category->id,
-                              ])
                           </td>
                       </tr>
                   @endforeach

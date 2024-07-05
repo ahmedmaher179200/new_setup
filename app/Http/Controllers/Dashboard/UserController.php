@@ -56,16 +56,10 @@ class UserController extends Controller
                         }
 
                         if (auth('user')->user()->has_permission('delete-users')) {
-                            $btn .= '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-default-' . $row->id.'">' . trans('admin.Delete') . '</a>';
+                            $btn .= '<a class="dropdown-item delete-popup" href="#" data-toggle="modal" data-target="#modal-default" data-url="'.route("dashboard.users.destroy", $row->id).'">' . trans('admin.Delete') . '</a>';
                         }
                         
                         $btn.= '</div></div>';
-
-                        //delete alert
-                        $btn .= view("Dashboard.partials.delete_confirmation", [
-                            'url' =>  route('dashboard.users.destroy', $row->id),
-                            'modal_id'  => 'modal-default-' . $row->id,
-                        ]);
                         return $btn;
                     })
                     ->addColumn('role', function($row){

@@ -84,4 +84,6 @@ Route::group(
         });
 
         Route::get('/test-pop-up', [HomeController::class, 'testPopUp'])->name('testPopUp');
+        Route::get('/delete-popup', [HomeController::class, 'DeletePopup'])->name('DeletePopup');
+
 });

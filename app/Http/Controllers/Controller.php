@@ -33,4 +33,13 @@ class Controller extends BaseController
             'body'  => 'test',
         ];
     }
+
+    public function DeletePopup(Request $request){
+        return [
+            'title' => trans('admin.Alert'),
+            'body'  => view('Dashboard.partials.delete_confirmation')->with([
+                'url' => $request->delete_url,
+            ])->render(),
+        ];
+    }
 }

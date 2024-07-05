@@ -1,9 +1,16 @@
-{{-- you can fire it by class name(fire-test-popup) --}}
-{{-- <button type="button" class="btn btn-default fire-test-popup" data-toggle="modal" data-target="#my-modal-default">
+{{-- 
+    add 
+        data-toggle="modal"
+        data-target="#modal-default"
+        data-url="{{route('testPopUp')}}"
+        class="fire-popup"
+
+--}}
+{{-- <button class="fire-popup" data-toggle="modal" data-target="#modal-default" data-url="{{route('testPopUp')}}">
     Launch Default Modal
 </button> --}}
 
-<div class="modal fade my-popup" id="my-modal-default">
+<div class="modal fade my-popup" id="modal-default">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
