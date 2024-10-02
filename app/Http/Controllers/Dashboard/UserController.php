@@ -36,28 +36,21 @@ class UserController extends Controller
         if ($request->ajax()) {
             $data = User::where('super', '!=', 1);
 
-            if($request->role){
+            if($request->role)
                 $data->whereRoleIs($request->role);
-            }
-
 
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         $btn =  '<div class="btn-group"><button type="button" class="btn btn-success">'. trans('admin.Actions') .'</button><button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"></button><div class="dropdown-menu" role="menu">';
-
-                        //my menu
-                        if (auth('user')->user()->has_permission('update-users')) {
+                        if (auth('user')->user()->has_permission('update-users'))
                             $btn .= '<a class="dropdown-item" href="' . route('dashboard.users.edit', $row->id).'">' . trans("admin.Edit") . '</a>';
-                        }
 
-                        if (auth('user')->user()->has_permission('update-users')) {
+                        if (auth('user')->user()->has_permission('update-users'))
                             $btn .= '<a class="dropdown-item" href="' . route('dashboard.users.activityLogs', $row->id) .'">' . trans('admin.Activity logs') . '</a>';
-                        }
 
-                        if (auth('user')->user()->has_permission('delete-users')) {
+                        if (auth('user')->user()->has_permission('delete-users'))
                             $btn .= '<a class="dropdown-item delete-popup" href="#" data-toggle="modal" data-target="#modal-default" data-url="'.route("dashboard.users.destroy", $row->id).'">' . trans('admin.Delete') . '</a>';
-                        }
                         
                         $btn.= '</div></div>';
                         return $btn;

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\App;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -77,12 +78,55 @@ class User extends Authenticatable implements JWTSubject
         return $this->date_format($this->attributes['created_at']);
     }
 
+    public function AllPermissions(){
+        return $this->roles()->with('permissions')->get()->pluck('permissions.*.name')->toArray()[0];
+    }
+
     public function has_permission($permission){
+        if(!app()->bound('user_permissions')){
+            App::singleton('user_permissions', function(){
+                return auth()->user()->AllPermissions();
+            });
+        }
+
         if($this->super == 1)
             return true;
         
-        if($this->isAbleTo($permission))
+        if(in_array($permission, app('user_permissions')))
             return true;
+
+        return false;
+    }
+
+    public function has_any_permissions($permissions){
+        if(!app()->bound('user_permissions')){
+            App::singleton('user_permissions', function(){
+                return auth()->user()->AllPermissions();
+            });
+        }
+
+        if($this->super == 1)
+            return true;
+        
+        if (array_intersect(app('user_permissions'), $permissions))
+            return true;
+
+        return false;
+    }
+
+    
+    public function has_all_permissions($permissions){
+        if(!app()->bound('user_permissions')){
+            App::singleton('user_permissions', function(){
+                return auth()->user()->AllPermissions();
+            });
+        }
+
+        if($this->super == 1)
+            return true;
+        
+        if (empty(array_diff($permissions, app('user_permissions'))))
+                return true;
 
         return false;
     }

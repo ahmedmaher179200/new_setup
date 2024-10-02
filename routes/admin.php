@@ -24,7 +24,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 // date_default_timezone_set(Setting::first()->time_zone);
-
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
