@@ -41,25 +41,7 @@ class UsersService
     }
 
     public function update_user_image($user,$image){
-        $path = $this->uploadImage($image, 'uploads/users', 660);
-
-        if($user->Image == null){
-            //if user don't have image 
-            Image::create([
-                'imageable_id'   => $user->id,
-                'imageable_type' => 'App\Models\User',
-                'src'            => $path,
-            ]);
-
-        } else {
-            //ig user have image
-            $oldImage = $user->Image->src;
-
-            if(file_exists(base_path('public/uploads/users/') . $oldImage))
-                unlink(base_path('public/uploads/users/') . $oldImage);
-
-            $user->Image->src = $path;
-            $user->Image->save();
-        }
+        $user->clearMediaCollection(User::profile_image);
+        $user->addMedia($image)->toMediaCollection(User::profile_image);
     }
 }

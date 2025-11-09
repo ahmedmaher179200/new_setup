@@ -8,6 +8,7 @@ use App\Http\Requests\Api\user\changePasswordRequest;
 use App\Http\Requests\Api\user\updateRequest;
 use App\Http\Resources\userResource;
 use App\Models\Image;
+use App\Models\User;
 use App\Traits\response;
 use App\Traits\Upload;
 use Illuminate\Http\Request;
@@ -61,23 +62,8 @@ class profileController extends Controller
     public function changeImage(changeImageRequest $request){
         $user = auth('user_api')->user();
 
-        $path = $this->uploadImage($request->file('image'), 'uploads/users', 300);
-
-        if($user->Image == null){ //if not has image
-            Image::create([
-                'imageable_id'   => $user->id,
-                'imageable_type' => 'App\Models\User',
-                'src'            => $path,
-            ]);
-        } else { //if has image
-            $oldImage = $user->Image->src;
-            if(file_exists(base_path('public/uploads/users/') . $oldImage)){
-                unlink(base_path('public/uploads/users/') . $oldImage);
-            }
-
-            $user->Image->src = $path;
-            $user->Image->save();
-        }
+        $user->clearMediaCollection(User::profile_image);
+        $user->addMedia($request->file('image'))->toMediaCollection(User::profile_image);
 
         return $this->success(trans('auth.success'), 200);
     }

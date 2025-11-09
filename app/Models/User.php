@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\helper;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,12 +10,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\App;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements JWTSubject, HasMedia
 {
-    use LaratrustUserTrait;
+    use LaratrustUserTrait, InteractsWithMedia;
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     use helper;
     
@@ -28,7 +29,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
     ];
-
+    public const profile_image = 'profile_image';
     /**
      * The attributes that should be cast.
      *
@@ -51,10 +52,10 @@ class User extends Authenticatable implements JWTSubject
 
     //
     public function getImage(){
-        if($this->Image != null){
-            return url('uploads/users/' . $this->Image->src);
+        if($this->getFirstMediaUrl(User::profile_image)){
+            return $this->getFirstMediaUrl(User::profile_image);
         } else {
-            return url('uploads/users/default.jpg');
+            return asset('uploads/users/default.jpg');
         }
     }
 
