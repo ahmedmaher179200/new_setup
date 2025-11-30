@@ -15,10 +15,10 @@ class userSeeder extends Seeder
     public function run()
     {
         $user = User::firstOrCreate([
-            'username'  => 'ahmed1',
+            'username'  => 'super',
             'name'  => 'ahmed maher',
             'super' => 1,
-            'password'  => bcrypt('ahmed1'),
+            'password'  => bcrypt('super'),
         ]);
     }
 }
