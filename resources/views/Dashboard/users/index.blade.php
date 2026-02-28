@@ -35,6 +35,11 @@
             @else
               <a href="#" type="button" class="btn btn-info disabled">{{ trans('admin.Add') }}</a>
             @endif
+            
+            <button type="button" class="btn btn-success" id="export-excel">
+                <i class="fas fa-file-excel"></i> {{ trans('admin.Export to Excel') }}
+            </button>
+
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -62,6 +67,8 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('theme/dashboard/dist/js/excel-export.js') }}"></script>
+
 <script type="text/javascript">
     var table = $('.data-table').DataTable({
         processing: true,
@@ -95,5 +102,13 @@
   $(document).on('change', '#role', function() {
     table.ajax.reload();
   });
+
+  $(document).on('click', '#export-excel', function() {
+      const role = $('#role').val();
+      ExcelExportService.export("{{ route('dashboard.users.export') }}", 'users_export.xlsx', {
+          role: role
+      });
+  });
 </script>
+
 @endsection

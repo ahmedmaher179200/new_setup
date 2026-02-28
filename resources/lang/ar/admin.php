@@ -100,5 +100,7 @@ return [
     'Select'  => 'اختر',
     'Parent'    => 'الأب',
     'Category'  => 'القسم',
-    'Path'  => 'المسار'
+    'Path'  => 'المسار',
+    'Export to Excel' => 'تصدير ملف اكسيل',
 ];
+

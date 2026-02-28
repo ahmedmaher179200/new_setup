@@ -110,8 +110,6 @@ return [
     'Parent'  => 'Parent',
     'Category'  => 'Category',
     'Path'  => 'Path',
-    ''  => '',
-    ''  => '',
-    ''  => '',
-    ''  => '',
+    'Export to Excel' => 'Export to Excel',
 ];
+

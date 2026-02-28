@@ -48,6 +48,8 @@ Route::group(
                     Route::post('{id}/edit', [UserController::class, 'update'])->name('update');
                     Route::get('{id}/destroy', [UserController::class, 'destroy'])->name('destroy');
                     Route::get('{id}/activity-logs', [UserController::class, 'activity_logs'])->name('activityLogs');
+                    Route::get('/export', [UserController::class, 'export'])->name('export');
+
                 });
             
                 Route::group(['prefix' => 'roles', 'as'=>'roles.'],function(){

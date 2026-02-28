@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Http\Request;
+use App\Traits\ExportTrait;
 use Yajra\DataTables\Facades\DataTables;
+
 
 class UserController extends Controller
 {
+    use ExportTrait;
+
     protected $UsersService;
     protected $ActivityLogsService;
 
@@ -122,6 +126,7 @@ class UserController extends Controller
 
         if($user->super == 1)
             return redirect(route('dashboard.users.index'))->with('error', trans('admin.you can\'t delete this user'));
+
         
         $user->delete();
 
@@ -136,6 +141,28 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', trans('admin.success'));
     }
+
+    public function export(Request $request)
+    {
+        $query = User::where('super', '!=', 1);
+
+        if ($request->role) {
+            $query->whereRoleIs($request->role);
+        }
+
+        $columns = [
+            'id' => 'ID',
+            'username' => 'Username',
+            'name' => 'Name',
+            'role' => function($row) {
+                return $row->getRole();
+            },
+            'created_at' => 'Created At',
+        ];
+
+        return $this->exportToJSON($query, $columns);
+    }
+
 
     public function activity_logs($id){
         $user = User::findOrFail($id);
