@@ -46,16 +46,18 @@ class UserController extends Controller
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $btn =  '<div class="btn-group"><button type="button" class="btn btn-success">'. trans('admin.Actions') .'</button><button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"></button><div class="dropdown-menu" role="menu">';
+                        $btn =  '<div class="dropdown"><button type="button" class="btn btn-icon" data-toggle="dropdown" aria-label="'. trans('admin.Actions') .'"><i class="fas fa-ellipsis-vertical"></i></button><div class="dropdown-menu dropdown-menu-right" role="menu">';
                         if (auth('user')->user()->has_permission('update-users'))
-                            $btn .= '<a class="dropdown-item" href="' . route('dashboard.users.edit', $row->id).'">' . trans("admin.Edit") . '</a>';
+                            $btn .= '<a class="dropdown-item" href="' . route('dashboard.users.edit', $row->id).'"><i class="fas fa-pen"></i> ' . trans("admin.Edit") . '</a>';
 
                         if (auth('user')->user()->has_permission('update-users'))
-                            $btn .= '<a class="dropdown-item" href="' . route('dashboard.users.activityLogs', $row->id) .'">' . trans('admin.Activity logs') . '</a>';
+                            $btn .= '<a class="dropdown-item" href="' . route('dashboard.users.activityLogs', $row->id) .'"><i class="fas fa-clock-rotate-left"></i> ' . trans('admin.Activity logs') . '</a>';
 
-                        if (auth('user')->user()->has_permission('delete-users'))
-                            $btn .= '<a class="dropdown-item delete-popup" href="#" data-toggle="modal" data-target="#modal-default" data-url="'.route("dashboard.users.destroy", $row->id).'">' . trans('admin.Delete') . '</a>';
-                        
+                        if (auth('user')->user()->has_permission('delete-users')) {
+                            $btn .= '<div class="dropdown-divider"></div>';
+                            $btn .= '<a class="dropdown-item dropdown-item-danger delete-popup" href="#" data-toggle="modal" data-target="#modal-default" data-url="'.route("dashboard.users.destroy", $row->id).'"><i class="fas fa-trash"></i> ' . trans('admin.Delete') . '</a>';
+                        }
+
                         $btn.= '</div></div>';
                         return $btn;
                     })

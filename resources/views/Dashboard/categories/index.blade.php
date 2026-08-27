@@ -6,7 +6,6 @@
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
             <h1 class="m-0">{{ trans('admin.Categories') }}</h1>
@@ -17,13 +16,11 @@
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
         <div class="card">
           <div class="card-header">
             @if (auth('user')->user()->has_permission('create-Categories'))
@@ -52,17 +49,18 @@
                           <td>{{$category->translate(LaravelLocalization::getCurrentLocale())->name}}</td>
                           <td>{{$category->created_at}}</td>
                           <td>
-                              <div class="btn-group">
-                                <button type="button" class="btn btn-success">{{ trans('admin.Actions') }}</button>
-                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                              <div class="dropdown">
+                                <button type="button" class="btn btn-icon" data-toggle="dropdown" aria-label="{{ trans('admin.Actions') }}">
+                                    <i class="fas fa-ellipsis-vertical"></i>
                                 </button>
-                                <div class="dropdown-menu" role="menu">
+                                <div class="dropdown-menu dropdown-menu-right" role="menu">
                                   @if (auth('user')->user()->has_permission('update-Categories'))
-                                    <a class="dropdown-item" href="{{route('dashboard.categories.edit',$category->id)}}">{{ trans('admin.Edit') }}</a>
+                                    <a class="dropdown-item" href="{{route('dashboard.categories.edit',$category->id)}}"><i class="fas fa-pen"></i> {{ trans('admin.Edit') }}</a>
                                   @endif
 
                                   @if (auth('user')->user()->has_permission('delete-Categories'))
-                                    <a class="dropdown-item delete-popup" href="#" data-toggle="modal" data-target="#modal-default" data-url="{{route('dashboard.categories.destroy', $category->id)}}">{{ trans('admin.Delete') }}</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item dropdown-item-danger delete-popup" href="#" data-toggle="modal" data-target="#modal-default" data-url="{{route('dashboard.categories.destroy', $category->id)}}"><i class="fas fa-trash"></i> {{ trans('admin.Delete') }}</a>
                                   @endif
                                 </div>
                               </div>
@@ -74,7 +72,6 @@
           </div>
           <!-- /.card-body -->
         </div>
-      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 @endsection

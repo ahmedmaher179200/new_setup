@@ -24,7 +24,7 @@
     </select>
 
     @error($name)
-        <span style="color: red; margin: 20px;">{{ $message }}</span>
+        <span class="invalid-feedback">{{ $message }}</span>
     @enderror
 </div>
 

@@ -13,6 +13,9 @@ return [
     |
     */
     'Login'             => 'Login',
+    'Welcome'           => 'Welcome back',
+    'Quick actions'     => 'Quick actions',
+    'Toggle sidebar'    => 'Toggle sidebar',
     'Sign In'           => 'Sign In',
     'Taahied'           => 'Taahied',
     'Admins'            => 'Admins',
@@ -69,6 +72,8 @@ return [
     'Mangement' => 'Mangement',
     'Date'  => 'Date',
     'csv'  => 'csv',
+    'copy'  => 'copy',
+    'pdf'  => 'pdf',
     'excel'  => 'excel',
     'print'  => 'print',
     'colvis'  => 'colvis',

@@ -2,9 +2,7 @@
     <label for="username">{{$label}}</label>
     <input type="file" {{$attributes->merge(['class' => $class, 'name' => $name]) }} {{$attribute}}>
     @error($name)
-        <span style="color: red; margin: 20px;">
-            {{ $message }}
-        </span>
+        <span class="invalid-feedback">{{ $message }}</span>
     @enderror
 </div>
 

@@ -13,6 +13,9 @@ return [
     |
     */
     'Login'=> 'تسجيل الدخول',
+    'Welcome'           => 'مرحباً بعودتك',
+    'Quick actions'     => 'إجراءات سريعة',
+    'Toggle sidebar'    => 'إظهار/إخفاء القائمة الجانبية',
     'Sign In'           => 'تسجيل الدخول',
     'Admins'            => 'المشرفين',
     'Roles'             => 'الصلاحيات',
@@ -65,6 +68,8 @@ return [
     'Mangement' => 'ادارة',
     'Date'  => 'Date',
     'csv'  => 'csv',
+    'copy'  => 'نسخ',
+    'pdf'  => 'pdf',
     'excel'  => 'تصدير ملف اكسيل',
     'print'  => 'طباعة',
     'colvis'  => 'colvis',

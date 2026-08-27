@@ -6,7 +6,6 @@
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
             <h1 class="m-0">{{ trans('admin.Users') }}</h1>
@@ -17,7 +16,6 @@
             </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
@@ -27,7 +25,6 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
         <div class="card">
           <div class="card-header">
             @if (auth('user')->user()->has_permission('create-users'))
@@ -61,13 +58,12 @@
           </div>
           <!-- /.card-body -->
         </div>
-      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 @endsection
 
 @section('script')
-<script src="{{ asset('theme/dashboard/dist/js/excel-export.js') }}"></script>
+<script src="{{ asset('assets/admin/js/excel-export.js') }}"></script>
 
 <script type="text/javascript">
     var table = $('.data-table').DataTable({
@@ -89,12 +85,12 @@
         ],
         dom: 'lBfrtip',
         buttons: [
-                    { extend: 'copy',  exportOptions: {search: 'none',columns: ':visible'}},
-                    { extend: 'excel', exportOptions: {search: 'none',columns: ':visible'}},
-                    { extend: 'csv',   exportOptions: {search: 'none',columns: ':visible'}},
-                    { extend: 'pdf',   exportOptions: {search: 'none',columns: ':visible'}},
-                    { extend: 'print', exportOptions: {search: 'none',columns: ':visible'}},
-                    { extend: 'colvis', exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'copy',   text: '<i class="fas fa-copy"></i> {{__('admin.copy')}}',        exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'excel',  text: '<i class="fas fa-file-excel"></i> {{__('admin.excel')}}',  exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'csv',    text: '<i class="fas fa-file-csv"></i> {{__('admin.csv')}}',      exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'pdf',    text: '<i class="fas fa-file-pdf"></i> {{__('admin.pdf')}}',      exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'print',  text: '<i class="fas fa-print"></i> {{__('admin.print')}}',       exportOptions: {search: 'none',columns: ':visible'}},
+                    { extend: 'colvis', text: '<i class="fas fa-table-columns"></i> {{__('admin.column_visibility')}}', exportOptions: {search: 'none',columns: ':visible'}},
                 ],
         // "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, 'All'] ]
     });

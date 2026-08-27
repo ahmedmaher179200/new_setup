@@ -13,15 +13,16 @@
       </div>
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
+      <div class="form-inline sidebar-search-group">
         <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="{{ trans('admin.search') }}" aria-label="{{ trans('admin.search') }}">
           <div class="input-group-append">
-            <button class="btn btn-sidebar">
+            <button type="button" class="btn btn-sidebar" tabindex="-1">
               <i class="fas fa-search fa-fw"></i>
             </button>
           </div>
         </div>
+        <p class="sidebar-search-empty d-none">{{ trans('admin.no_result') }}</p>
       </div>
 
       <!-- Sidebar Menu -->
@@ -45,8 +46,8 @@
                 <i class="fas fa-user"></i>
                 <p>
                   {{ trans('admin.Users Mangement') }}
-                  <i class="right fas fa-angle-left"></i>
                 </p>
+                <i class="right fas fa-chevron-right"></i>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">

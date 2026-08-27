@@ -1,5 +1,4 @@
 <section class="content">
-    <div class="container-fluid">
       <div class="card collapsed-card">
         <div class="card-header">
           <h3 class="card-title">{{ trans('admin.filter') }}</h3>
@@ -27,5 +26,4 @@
         </div>
         <!-- /.card-body -->
       </div>
-    </div>
   </section>
